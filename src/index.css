@@ -5,65 +5,67 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
-    --foreground: 213 31% 91%;
+    /* Light mode - Netflix inspired */
+    --background: 0 0% 100%;
+    --foreground: 354 75% 15%;
 
-    --primary: 222 47% 11%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 354 86% 33%;
+    --primary-foreground: 0 0% 100%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 213 31% 91%;
+    --card: 0 0% 100%;
+    --card-foreground: 354 75% 15%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 213 31% 91%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 354 75% 15%;
 
-    --accent: 262 83% 58%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 354 86% 33%;
+    --accent-foreground: 0 0% 100%;
 
-    --secondary: 199 89% 48%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 354 86% 33%;
 
-    --muted: 223 47% 20%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 223 47% 20%;
-    --input: 223 47% 20%;
-    --ring: 224 71.4% 4.1%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 354 86% 33%;
 
     --radius: 0.75rem;
   }
 
-  .light {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+  .dark {
+    /* Dark mode - Netflix inspired */
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
 
-    --primary: 222 47% 11%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 354 86% 33%;
+    --primary-foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
 
-    --accent: 262 83% 58%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 354 86% 33%;
+    --accent-foreground: 0 0% 100%;
 
-    --secondary: 199 89% 48%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 220 14% 10%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215 20% 65%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 223 47% 11%;
+    --input: 223 47% 11%;
+    --ring: 354 86% 33%;
   }
 }
 
@@ -137,5 +139,38 @@
 
   .gradient-text {
     @apply bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent;
+  }
+
+  /* Timeline styling */
+  .timeline-container {
+    @apply relative;
+  }
+
+  .timeline-line {
+    @apply absolute left-4 md:left-1/2 h-full w-0.5 bg-accent/50 transform md:-translate-x-1/2;
+  }
+
+  .timeline-item {
+    @apply relative grid md:grid-cols-2 gap-8 mb-16;
+  }
+
+  .timeline-content {
+    @apply md:col-start-2 glass-card p-6;
+  }
+
+  .timeline-date {
+    @apply md:col-start-1 md:text-right flex flex-col justify-center items-start md:items-end;
+  }
+
+  .timeline-dot {
+    @apply absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-accent transform -translate-x-1/2 top-6;
+  }
+
+  .timeline-item:nth-child(even) .timeline-content {
+    @apply md:col-start-1;
+  }
+
+  .timeline-item:nth-child(even) .timeline-date {
+    @apply md:col-start-2 md:text-left md:items-start;
   }
 }
