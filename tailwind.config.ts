@@ -132,6 +132,54 @@ export default {
 						opacity: '0.8',
 					},
 				},
+				'slide-up': {
+					'0%': {
+						transform: 'translateY(20px)',
+						opacity: '0',
+					},
+					'100%': {
+						transform: 'translateY(0)',
+						opacity: '1',
+					},
+				},
+				'slide-down': {
+					'0%': {
+						transform: 'translateY(-20px)',
+						opacity: '0',
+					},
+					'100%': {
+						transform: 'translateY(0)',
+						opacity: '1',
+					},
+				},
+				'slide-in-right': {
+					'0%': {
+						transform: 'translateX(20px)',
+						opacity: '0',
+					},
+					'100%': {
+						transform: 'translateX(0)',
+						opacity: '1',
+					},
+				},
+				'slide-in-left': {
+					'0%': {
+						transform: 'translateX(-20px)',
+						opacity: '0',
+					},
+					'100%': {
+						transform: 'translateX(0)',
+						opacity: '1',
+					},
+				},
+				'glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 5px 2px var(--tw-shadow-color)',
+					},
+					'50%': {
+						boxShadow: '0 0 20px 5px var(--tw-shadow-color)',
+					},
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -141,7 +189,15 @@ export default {
 				'scale-in': 'scale-in 0.3s ease-out',
 				'float': 'float 5s ease-in-out infinite',
 				'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
-			}
+				'slide-up': 'slide-up 0.5s ease-out',
+				'slide-down': 'slide-down 0.5s ease-out',
+				'slide-in-right': 'slide-in-right 0.5s ease-out',
+				'slide-in-left': 'slide-in-left 0.5s ease-out',
+				'glow': 'glow 2s ease-in-out infinite',
+			},
+			boxShadow: {
+				'glow': '0 0 10px 3px var(--tw-shadow-color)',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

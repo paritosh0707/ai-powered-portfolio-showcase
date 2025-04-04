@@ -5,67 +5,67 @@
 
 @layer base {
   :root {
-    /* Light mode - Netflix inspired */
-    --background: 0 0% 100%;
-    --foreground: 354 75% 15%;
+    /* Light mode - Modern Professional theme */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
 
-    --primary: 354 86% 33%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 222 47% 30%;
+    --primary-foreground: 210 40% 98%;
 
     --card: 0 0% 100%;
-    --card-foreground: 354 75% 15%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 354 75% 15%;
+    --popover-foreground: 222 47% 11%;
 
-    --accent: 354 86% 33%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 216 100% 50%;
+    --accent-foreground: 210 40% 98%;
 
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 354 86% 33%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 30%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 8% 46%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 354 86% 33%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 216 100% 50%;
 
     --radius: 0.75rem;
   }
 
   .dark {
-    /* Dark mode - Netflix inspired */
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    /* Dark mode - Modern Professional theme */
+    --background: 220 40% 10%;
+    --foreground: 210 40% 98%;
 
-    --primary: 354 86% 33%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
 
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 224 71% 4%;
-    --popover-foreground: 213 31% 91%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
 
-    --accent: 354 86% 33%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 216 100% 50%;
+    --accent-foreground: 210 40% 98%;
 
-    --secondary: 220 14% 10%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 217 32% 18%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 223 47% 11%;
+    --muted: 217 32% 18%;
     --muted-foreground: 215 20% 65%;
 
     --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 223 47% 11%;
-    --input: 223 47% 11%;
-    --ring: 354 86% 33%;
+    --border: 217 32% 18%;
+    --input: 217 32% 18%;
+    --ring: 216 100% 50%;
   }
 }
 
@@ -94,15 +94,15 @@
   }
 
   .badge-primary {
-    @apply bg-primary/10 text-primary-foreground;
+    @apply bg-primary/10 text-primary;
   }
 
   .badge-secondary {
-    @apply bg-secondary/10 text-secondary-foreground;
+    @apply bg-secondary/80 text-secondary-foreground;
   }
 
   .badge-accent {
-    @apply bg-accent/10 text-accent-foreground;
+    @apply bg-accent/10 text-accent;
   }
 
   .particles-bg {
@@ -110,11 +110,11 @@
   }
 
   .glass-card {
-    @apply bg-background/30 backdrop-blur-lg border border-border/50 rounded-lg shadow-lg;
+    @apply bg-card/80 backdrop-blur-sm border border-border/50 shadow-xl hover:shadow-accent/10 transition-all duration-300;
   }
 
   .nav-link {
-    @apply text-foreground/80 hover:text-foreground transition-colors duration-200;
+    @apply text-foreground/80 hover:text-accent transition-colors duration-200;
   }
 
   .nav-link.active {
@@ -138,7 +138,7 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
   }
 
   /* Timeline styling */
@@ -147,7 +147,7 @@
   }
 
   .timeline-line {
-    @apply absolute left-4 md:left-1/2 h-full w-0.5 bg-accent/50 transform md:-translate-x-1/2;
+    @apply absolute left-4 md:left-1/2 h-full w-0.5 bg-accent/70 transform md:-translate-x-1/2;
   }
 
   .timeline-item {
@@ -155,7 +155,7 @@
   }
 
   .timeline-content {
-    @apply md:col-start-2 glass-card p-6;
+    @apply md:col-start-2 glass-card p-6 rounded-lg;
   }
 
   .timeline-date {
@@ -163,7 +163,7 @@
   }
 
   .timeline-dot {
-    @apply absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-accent transform -translate-x-1/2 top-6;
+    @apply absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-accent transform -translate-x-1/2 top-6 shadow-lg shadow-accent/30;
   }
 
   .timeline-item:nth-child(even) .timeline-content {
@@ -174,3 +174,4 @@
     @apply md:col-start-2 md:text-left md:items-start;
   }
 }
+

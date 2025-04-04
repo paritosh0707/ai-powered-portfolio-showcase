@@ -41,7 +41,7 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-24 bg-muted/20">
+    <section id="skills" className="py-24 bg-secondary/30">
       <div className="container">
         <h2 className="section-title text-center mb-16">
           Skills & Expertise
@@ -51,19 +51,19 @@ export default function Skills() {
           {skillCategories.map((category, index) => (
             <div 
               key={index} 
-              className="glass-card p-6 animate-scale-in"
+              className="glass-card p-6 rounded-lg animate-scale-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <h3 className="text-xl font-bold mb-4 flex items-center">
-                {category.icon}
-                <span className="ml-2">{category.title}</span>
+                <span className="p-2 rounded-md bg-accent/10 mr-3">{category.icon}</span>
+                <span>{category.title}</span>
               </h3>
 
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-3">
                 {category.skills.map((skill, skillIndex) => (
                   <div 
                     key={skillIndex} 
-                    className="bg-background/30 rounded-md p-2 text-center hover:bg-accent hover:text-accent-foreground transition-colors"
+                    className="bg-background/50 rounded-md p-2.5 text-center border border-border/30 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300"
                   >
                     <span className="text-sm font-medium">{skill}</span>
                   </div>
@@ -85,8 +85,8 @@ export default function Skills() {
             ].map((tool, index) => (
               <span 
                 key={index} 
-                className="badge badge-accent animate-fade-in"
-                style={{ animationDelay: `${index * 50}ms` }}
+                className="badge badge-accent animate-fade-in px-3 py-1 bg-background/50 border border-border/30 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300"
+                style={{ animationDelay: `${index * 30}ms` }}
               >
                 {tool}
               </span>
