@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { ArrowDown } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -128,7 +129,14 @@ export default function Hero() {
         aria-hidden="true"
       />
       
-      <div className="z-10 text-center max-w-3xl mx-auto px-4 animate-fade-in">
+      <div className="z-10 text-center max-w-3xl mx-auto px-4 animate-fade-in flex flex-col items-center">
+        <div className="mb-8">
+          <Avatar className="w-40 h-40 border-4 border-accent/30 shadow-xl shadow-accent/20 animate-scale-in">
+            <AvatarImage src="/placeholder.svg" alt="John Doe" />
+            <AvatarFallback className="text-4xl bg-accent/10 text-accent">JD</AvatarFallback>
+          </Avatar>
+        </div>
+        
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
           <span className="block">Hi, I'm </span>
           <span className="gradient-text">John Doe</span>

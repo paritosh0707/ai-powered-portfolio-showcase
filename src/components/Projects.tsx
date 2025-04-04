@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { ArrowUpRight, Github, Terminal, Layers, Brain, FileCode, Eye } from "lucide-react";
+import { ArrowUpRight, Github, Terminal, Layers, Brain, FileCode, Eye, ArrowRight } from "lucide-react";
 
 export default function Projects() {
   const [filter, setFilter] = useState<string>("all");
@@ -111,82 +111,98 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <div 
-              key={project.id} 
-              className="glass-card overflow-hidden group animate-scale-in"
-              style={{ animationDelay: `${(project.id - 1) * 100}ms` }}
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              
-              <div className="p-6">
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {project.categories.map((category, i) => (
-                    <span key={i} className="badge badge-secondary text-xs">
-                      {categories.find(c => c.id === category)?.label}
-                    </span>
-                  ))}
+        <div className="relative">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project) => (
+              <div 
+                key={project.id} 
+                className="glass-card overflow-hidden group animate-scale-in"
+                style={{ animationDelay: `${(project.id - 1) * 100}ms` }}
+              >
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
                 </div>
                 
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                
-                <p className="text-foreground/80 text-sm mb-4">
-                  {project.description}
-                </p>
-                
-                <div className="mb-4">
-                  <div className="flex items-center gap-1 text-sm text-accent mb-1">
-                    <Brain className="h-4 w-4" />
-                    <span className="font-medium">Impact:</span>
-                  </div>
-                  <p className="text-sm text-foreground/80">{project.impact}</p>
-                </div>
-                
-                <div className="mb-4">
-                  <div className="flex items-center gap-1 text-sm text-accent mb-1">
-                    <Terminal className="h-4 w-4" />
-                    <span className="font-medium">Tech Stack:</span>
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {project.stack.map((tech, i) => (
-                      <span key={i} className="badge text-xs">
-                        {tech}
+                <div className="p-6">
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {project.categories.map((category, i) => (
+                      <span key={i} className="badge badge-secondary text-xs">
+                        {categories.find(c => c.id === category)?.label}
                       </span>
                     ))}
                   </div>
-                </div>
-                
-                <div className="flex justify-between mt-4">
-                  <a
-                    href={project.github}
-                    className="flex items-center gap-1 text-sm hover:text-accent transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="h-4 w-4" />
-                    <span>Code</span>
-                  </a>
-                  <a
-                    href={project.demo}
-                    className="flex items-center gap-1 text-sm hover:text-accent transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Eye className="h-4 w-4" />
-                    <span>Live Demo</span>
-                    <ArrowUpRight className="h-3 w-3" />
-                  </a>
+                  
+                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                  
+                  <p className="text-foreground/80 text-sm mb-4">
+                    {project.description}
+                  </p>
+                  
+                  <div className="mb-4">
+                    <div className="flex items-center gap-1 text-sm text-accent mb-1">
+                      <Brain className="h-4 w-4" />
+                      <span className="font-medium">Impact:</span>
+                    </div>
+                    <p className="text-sm text-foreground/80">{project.impact}</p>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <div className="flex items-center gap-1 text-sm text-accent mb-1">
+                      <Terminal className="h-4 w-4" />
+                      <span className="font-medium">Tech Stack:</span>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {project.stack.map((tech, i) => (
+                        <span key={i} className="badge text-xs">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between mt-4">
+                    <a
+                      href={project.github}
+                      className="flex items-center gap-1 text-sm hover:text-accent transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="h-4 w-4" />
+                      <span>Code</span>
+                    </a>
+                    <a
+                      href={project.demo}
+                      className="flex items-center gap-1 text-sm hover:text-accent transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Eye className="h-4 w-4" />
+                      <span>Live Demo</span>
+                      <ArrowUpRight className="h-3 w-3" />
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          
+          <button 
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-10 hidden lg:flex"
+            aria-label="Previous projects"
+          >
+            <ArrowRight className="h-5 w-5 rotate-180" />
+          </button>
+          
+          <button 
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-10 hidden lg:flex"
+            aria-label="Next projects"
+          >
+            <ArrowRight className="h-5 w-5" />
+          </button>
         </div>
 
         <div className="text-center mt-12">

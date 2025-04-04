@@ -1,6 +1,7 @@
 
 import React from "react";
 import { FileText, ArrowRight, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Blog() {
   const blogPosts = [
@@ -12,7 +13,7 @@ export default function Blog() {
       date: "April 15, 2025",
       readTime: "12 min read",
       tags: ["LLMs", "RAG", "NLP"],
-      link: "#"
+      slug: "building-rag-systems"
     },
     {
       id: 2,
@@ -22,7 +23,7 @@ export default function Blog() {
       date: "March 24, 2025",
       readTime: "9 min read",
       tags: ["LLMs", "Fine-tuning", "PEFT"],
-      link: "#"
+      slug: "fine-tuning-llms-efficiently"
     },
     {
       id: 3,
@@ -32,7 +33,7 @@ export default function Blog() {
       date: "February 10, 2025",
       readTime: "15 min read",
       tags: ["MLOps", "LLMs", "Production"],
-      link: "#"
+      slug: "mlops-best-practices"
     }
   ];
 
@@ -44,61 +45,79 @@ export default function Blog() {
           <span>Latest Articles</span>
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
-            <a 
-              key={post.id} 
-              href={post.link}
-              className="glass-card overflow-hidden group animate-scale-in block"
-              style={{ animationDelay: `${(post.id - 1) * 100}ms` }}
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              
-              <div className="p-6">
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {post.tags.map((tag, i) => (
-                    <span key={i} className="badge badge-accent text-xs">
-                      {tag}
+        <div className="relative">
+          <div className="grid md:grid-cols-3 gap-8">
+            {blogPosts.map((post) => (
+              <div 
+                key={post.id} 
+                className="glass-card overflow-hidden group animate-scale-in block"
+                style={{ animationDelay: `${(post.id - 1) * 100}ms` }}
+              >
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {post.tags.map((tag, i) => (
+                      <span key={i} className="badge badge-accent text-xs">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-foreground/80 text-sm mb-4">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center text-sm text-foreground/60 mb-4">
+                    <span>{post.date}</span>
+                    <span className="mx-2">•</span>
+                    <span className="flex items-center">
+                      <Clock className="h-3 w-3 mr-1" />
+                      {post.readTime}
                     </span>
-                  ))}
-                </div>
-                
-                <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
-                  {post.title}
-                </h3>
-                
-                <p className="text-foreground/80 text-sm mb-4">
-                  {post.excerpt}
-                </p>
-                
-                <div className="flex items-center text-sm text-foreground/60 mb-4">
-                  <span>{post.date}</span>
-                  <span className="mx-2">•</span>
-                  <span className="flex items-center">
-                    <Clock className="h-3 w-3 mr-1" />
-                    {post.readTime}
-                  </span>
-                </div>
-                
-                <div className="flex items-center font-medium text-accent group-hover:translate-x-1 transition-transform">
-                  <span>Read more</span>
-                  <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                  
+                  <Link 
+                    to={`/blog/${post.slug}`} 
+                    className="flex items-center font-medium text-accent group-hover:translate-x-1 transition-transform"
+                  >
+                    <span>Read more</span>
+                    <ArrowRight className="h-4 w-4 ml-1" />
+                  </Link>
                 </div>
               </div>
-            </a>
-          ))}
+            ))}
+          </div>
+          
+          <button 
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-10 hidden md:flex"
+            aria-label="Previous articles"
+          >
+            <ArrowRight className="h-5 w-5 rotate-180" />
+          </button>
+          
+          <button 
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-10 hidden md:flex"
+            aria-label="Next articles"
+          >
+            <ArrowRight className="h-5 w-5" />
+          </button>
         </div>
 
         <div className="text-center mt-12">
-          <a href="#" className="btn-outline">
+          <Link to="/blog" className="btn-outline">
             View All Articles
-          </a>
+          </Link>
         </div>
       </div>
     </section>
