@@ -237,4 +237,31 @@
   .timeline-item:nth-child(even) .timeline-date {
     @apply md:col-start-2 md:text-left md:items-start;
   }
+  
+  /* Chat Assistant Animation Utilities */
+  .delay-0 {
+    animation-delay: 0ms;
+  }
+  
+  .delay-150 {
+    animation-delay: 150ms;
+  }
+  
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  /* Define a slow pulse animation for highlighting */
+  @keyframes slow-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+  
+  .animate-slow-pulse {
+    animation: slow-pulse 3s ease-in-out infinite;
+  }
 }
