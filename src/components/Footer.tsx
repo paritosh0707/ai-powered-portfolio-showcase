@@ -9,14 +9,14 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-foreground/70 text-sm">
-              © {new Date().getFullYear()} John Doe. All rights reserved.
+              © {new Date().getFullYear()} Paritosh Sharma. All rights reserved.
             </p>
           </div>
           
           <div className="flex items-center text-sm text-foreground/70">
-            <p className="flex items-center">
+            {/* <p className="flex items-center">
               Built with <Heart className="h-4 w-4 mx-1 text-accent" /> using React & Tailwind
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

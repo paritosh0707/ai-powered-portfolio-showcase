@@ -88,13 +88,13 @@ export default function Contact() {
                     href="mailto:hello@johndoe.com" 
                     className="text-accent hover:underline"
                   >
-                    hello@johndoe.com
+                    paritoshsharma072000@gmail.com
                   </a>
                 </div>
                 
                 <div>
                   <p className="text-foreground/80 mb-1">Location</p>
-                  <p>San Francisco, California</p>
+                  <p>Gurugram, Haryana</p>
                 </div>
                 
                 <div>
@@ -109,7 +109,7 @@ export default function Contact() {
               
               <div className="flex flex-col space-y-4">
                 <a 
-                  href="https://linkedin.com/in/username" 
+                  href="https://www.linkedin.com/in/paritosh-sharma-74b4ba17a/" 
                   className="flex items-center gap-3 hover:text-accent transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -119,7 +119,7 @@ export default function Contact() {
                 </a>
                 
                 <a 
-                  href="https://github.com/username" 
+                  href="https://github.com/paritosh0707" 
                   className="flex items-center gap-3 hover:text-accent transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"

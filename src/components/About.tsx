@@ -15,27 +15,23 @@ export default function About() {
           <div className="mb-8">
             <h3 className="text-2xl font-bold mb-4">Professional Bio</h3>
             <p className="text-foreground/80 mb-4">
-              With over 8 years of experience in machine learning and artificial intelligence, 
-              I specialize in developing cutting-edge AI solutions that solve real-world problems. 
-              My expertise spans natural language processing, large language models, computer vision, 
-              and MLOps, with a focus on building scalable, production-ready systems.
+            With over 3 years of experience in data science and a strong focus on Generative AI, I specialize in building scalable, production-ready solutions that drive real-world impact.
+            My expertise spans LangChain, LLMOps, MLOps, and deep learning, with hands-on experience in building multi-agent systems, RAG pipelines, and automated data workflows.
             </p>
             <p className="text-foreground/80">
-              Currently, I work as a Senior AI Engineer at TechCorp, where I lead the development 
-              of generative AI applications that have transformed how our clients interact with data. 
-              Previously, I helped scale ML infrastructure at DataInnovate, reducing model deployment 
-              time by 70% while improving model performance by 35%.
+            Currently, I work as a Senior Data Scientist at Incedo Solutions Ltd, where I lead the development of innovative AI-driven tools—ranging from QA automation systems that generate 
+            Gherkin-based test cases to enterprise-ready APIs that streamline business operations. My projects have led to measurable improvements, including a 36% boost in QA productivity and a 44% gain in data validation efficiency.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-xl font-bold mb-3 flex items-center">
-                <Briefcase className="h-5 w-5 mr-2 text-secondary" />
+                <Briefcase className="h-5 w-5 mr-2 text-accent" />
                 Experience Highlights
               </h3>
               <ul className="space-y-2 text-foreground/80">
-                <li>• Led a team of 5 ML engineers at TechCorp</li>
+                <li>• Led a team of 5 ML engineers at Incedo</li>
                 <li>• Deployed 12+ ML models to production</li>
                 <li>• Reduced inference costs by 45% through optimization</li>
                 <li>• Mentored 20+ junior data scientists</li>
@@ -44,7 +40,7 @@ export default function About() {
 
             <div>
               <h3 className="text-xl font-bold mb-3 flex items-center">
-                <Book className="h-5 w-5 mr-2 text-secondary" />
+                <Book className="h-5 w-5 mr-2 text-accent" />
                 Education
               </h3>
               <ul className="space-y-2 text-foreground/80">
@@ -58,7 +54,7 @@ export default function About() {
 
           <div className="mt-8">
             <h3 className="text-xl font-bold mb-3 flex items-center">
-              <Award className="h-5 w-5 mr-2 text-secondary" />
+              <Award className="h-5 w-5 mr-2 text-accent" />
               Fun Facts
             </h3>
             <ul className="grid md:grid-cols-2 gap-2 text-foreground/80">

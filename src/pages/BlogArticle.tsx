@@ -11,7 +11,7 @@ const blogPosts = [
     title: "Building RAG Systems That Actually Work",
     date: "April 15, 2025",
     readTime: "12 min read",
-    author: "John Doe",
+    author: "Paritosh Sharma",
     tags: ["LLMs", "RAG", "NLP"],
     image: "placeholder.svg",
     content: `
@@ -111,7 +111,7 @@ const blogPosts = [
     title: "Fine-tuning LLMs Without Breaking the Bank",
     date: "March 24, 2025",
     readTime: "9 min read",
-    author: "John Doe",
+    author: "Paritosh Sharma",
     tags: ["LLMs", "Fine-tuning", "PEFT"],
     image: "placeholder.svg",
     content: `
@@ -141,7 +141,7 @@ const blogPosts = [
     title: "MLOps Best Practices for LLM Applications",
     date: "February 10, 2025",
     readTime: "15 min read",
-    author: "John Doe",
+    author: "Paritosh Sharma",
     tags: ["MLOps", "LLMs", "Production"],
     image: "placeholder.svg",
     content: `

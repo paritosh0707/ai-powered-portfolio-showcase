@@ -54,7 +54,7 @@ export default function Navbar() {
               href="#home"
               className="text-lg md:text-xl font-bold gradient-text"
             >
-              John Doe
+              Paritosh Sharma
             </a>
           </div>
 
