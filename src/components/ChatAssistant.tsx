@@ -80,10 +80,25 @@ export default function ChatAssistant() {
     setIsTyping(true);
 
     // Simulate AI thinking and response
-    setTimeout(() => {
+    // setTimeout(() => {
+    //   const assistantMessage: Message = {
+    //     id: (Date.now() + 1).toString(),
+    //     content: generateResponse(input),
+    //     role: "assistant",
+    //     timestamp: new Date(),
+    //   };
+    setTimeout(async() => {
+      const res = await fetch("http://localhost:8000/api/v1/chatbot/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: input }),
+      });
+      const data = await res.json();
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: generateResponse(input),
+        content: data.response, // <-- Use response from backend
         role: "assistant",
         timestamp: new Date(),
       };
@@ -294,7 +309,7 @@ export default function ChatAssistant() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Ask me anything about Paritosh's work..."
-                    className="w-full resize-none rounded-lg border border-input px-3 py-2 text-sm min-h-[44px] max-h-[120px] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                    className="w-full resize-none rounded-lg border border-input px-3 py-2 text-sm min-h-[44px] max-h-[120px] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-black"
                     rows={1}
                   />
                 </div>
