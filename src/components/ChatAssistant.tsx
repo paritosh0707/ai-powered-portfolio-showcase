@@ -67,17 +67,31 @@ export default function ChatAssistant() {
     e.preventDefault();
     if (!input.trim()) return;
 
+    const userInput = input
+
     // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
-      content: input,
+      content: userInput,
       role: "user",
       timestamp: new Date(),
     };
-    
-    setMessages((prev) => [...prev, userMessage]);
+
+    // Compute the new message history, including the latest user message
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
     setInput("");
     setIsTyping(true);
+
+    // Build the history payload (each message with role and content)
+    const historyPayload = updatedMessages.map((msg) => ({
+      role: msg.role,
+      content: msg.content,
+    }));
+    
+    // setMessages((prev) => [...prev, userMessage]);
+    // setInput("");
+    // setIsTyping(true);
 
     // Simulate AI thinking and response
     // setTimeout(() => {
@@ -88,12 +102,13 @@ export default function ChatAssistant() {
     //     timestamp: new Date(),
     //   };
     setTimeout(async() => {
+      try{
       const res = await fetch("http://localhost:8000/api/v1/chatbot/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ message: input , history: historyPayload}),
       });
       const data = await res.json();
       const assistantMessage: Message = {
@@ -104,6 +119,17 @@ export default function ChatAssistant() {
       };
       setMessages((prev) => [...prev, assistantMessage]);
       setIsTyping(false);
+    }catch (error) {
+      console.error("Error fetching chatbot response:", error);
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "Error in Fetching Reponse !", // <-- Use response from backend
+        role: "assistant",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, assistantMessage]);
+      setIsTyping(false);
+    };
     }, 1500);
   };
 
@@ -114,19 +140,19 @@ export default function ChatAssistant() {
     }
   };
 
-  const generateResponse = (query: string): string => {
-    // This would be replaced with actual LLM integration
-    const responses = [
-      "As an AI trained on Paritosh's work, I can tell you he has extensive experience in building LLM-based systems with a focus on retrieval-augmented generation.",
-      "Paritosh has worked on several projects involving natural language processing and computer vision, combining multiple AI models for more accurate results.",
-      "Based on his portfolio, Paritosh specializes in creating custom ML pipelines that optimize for both performance and maintainability.",
-      "From what I've been trained on, Paritosh's approach to AI engineering emphasizes responsible AI practices and thorough evaluation methodologies.",
-      "Paritosh has written extensively about the challenges and solutions in implementing production-ready machine learning systems.",
-      "According to his experience, integrating domain knowledge with state-of-the-art AI models has been crucial for his project successes.",
-    ];
+  // const generateResponse = (query: string): string => {
+  //   // This would be replaced with actual LLM integration
+  //   const responses = [
+  //     "As an AI trained on Paritosh's work, I can tell you he has extensive experience in building LLM-based systems with a focus on retrieval-augmented generation.",
+  //     "Paritosh has worked on several projects involving natural language processing and computer vision, combining multiple AI models for more accurate results.",
+  //     "Based on his portfolio, Paritosh specializes in creating custom ML pipelines that optimize for both performance and maintainability.",
+  //     "From what I've been trained on, Paritosh's approach to AI engineering emphasizes responsible AI practices and thorough evaluation methodologies.",
+  //     "Paritosh has written extensively about the challenges and solutions in implementing production-ready machine learning systems.",
+  //     "According to his experience, integrating domain knowledge with state-of-the-art AI models has been crucial for his project successes.",
+  //   ];
     
-    return responses[Math.floor(Math.random() * responses.length)];
-  };
+  //   return responses[Math.floor(Math.random() * responses.length)];
+  // };
 
   const handleSampleQuestion = (question: string) => {
     setInput(question);
