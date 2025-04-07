@@ -1,10 +1,13 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import { Send, Bot, User, X, Maximize, Minimize, Sparkles, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark, oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useTheme } from "next-themes";
 
 type Message = {
   id: string;
@@ -39,6 +42,10 @@ export default function ChatAssistant() {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  const { theme, systemTheme } = useTheme?.() || { theme: "light", systemTheme: "light" };
+  const currentTheme = theme === "system" ? systemTheme : theme;
+  const isDarkTheme = currentTheme === "dark";
 
   const toggleChat = () => {
     if (isMinimized) {
@@ -244,7 +251,7 @@ export default function ChatAssistant() {
                   <div className="flex gap-2 max-w-[80%]">
                     {message.role === "assistant" && (
                       <Avatar className="h-8 w-8 mt-1">
-                        <AvatarImage src="/placeholder.svg" alt="AI" />
+                      <AvatarImage src="src/static/imgg.jpg" alt="AI" />
                         <AvatarFallback className="bg-accent text-accent-foreground">
                           <Bot className="h-4 w-4" />
                         </AvatarFallback>
@@ -259,12 +266,118 @@ export default function ChatAssistant() {
                           : "bg-muted text-foreground"
                       )}
                     >
-                      {message.content}
+                      {message.role === "assistant" ? (
+                        <div className="markdown-content prose prose-sm dark:prose-invert max-w-none">
+                          <ReactMarkdown
+                            components={{
+                              code({node, className, children, ...props}) {
+                                const match = /language-(\w+)/.exec(className || '');
+                                const isInline = !match && !children.toString().includes('\n');
+                                
+                                return !isInline && match ? (
+                                  <SyntaxHighlighter
+                                    style={isDarkTheme ? oneDark : oneLight}
+                                    language={match[1]}
+                                    PreTag="div"
+                                    className="rounded-md text-xs leading-normal"
+                                    customStyle={{
+                                      margin: '0.5em 0',
+                                      padding: '0.5em',
+                                      borderRadius: '0.375rem',
+                                    }}
+                                    {...props}
+                                  >
+                                    {String(children).replace(/\n$/, '')}
+                                  </SyntaxHighlighter>
+                                ) : (
+                                  <code 
+                                    className={cn(
+                                      "bg-muted/80 dark:bg-muted/20 px-1.5 py-0.5 rounded font-mono text-xs",
+                                      className
+                                    )} 
+                                    {...props}
+                                  >
+                                    {children}
+                                  </code>
+                                );
+                              },
+                              a: ({node, ...props}) => (
+                                <a 
+                                  {...props} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className="text-blue-500 dark:text-blue-400 hover:underline"
+                                />
+                              ),
+                              p: ({node, ...props}) => (
+                                <p {...props} className="mb-2 last:mb-0" />
+                              ),
+                              ul: ({node, ...props}) => (
+                                <ul {...props} className="list-disc pl-5 mb-2 space-y-1" />
+                              ),
+                              ol: ({node, ...props}) => (
+                                <ol {...props} className="list-decimal pl-5 mb-2 space-y-1" />
+                              ),
+                              li: ({node, ...props}) => (
+                                <li {...props} className="mb-1" />
+                              ),
+                              blockquote: ({node, ...props}) => (
+                                <blockquote 
+                                  {...props} 
+                                  className="border-l-2 border-accent/50 dark:border-accent/70 pl-3 my-2 italic" 
+                                />
+                              ),
+                              h1: ({node, ...props}) => (
+                                <h1 {...props} className="text-lg font-bold mt-3 mb-1" />
+                              ),
+                              h2: ({node, ...props}) => (
+                                <h2 {...props} className="text-base font-bold mt-3 mb-1" />
+                              ),
+                              h3: ({node, ...props}) => (
+                                <h3 {...props} className="text-sm font-bold mt-2 mb-1" />
+                              ),
+                              strong: ({node, ...props}) => (
+                                <strong 
+                                  {...props} 
+                                  className="font-bold dark:text-accent-foreground" 
+                                />
+                              ),
+                              em: ({node, ...props}) => (
+                                <em 
+                                  {...props} 
+                                  className="italic dark:text-accent-foreground/90" 
+                                />
+                              ),
+                              table: ({node, ...props}) => (
+                                <div className="overflow-x-auto">
+                                  <table {...props} className="min-w-full border-collapse my-2" />
+                                </div>
+                              ),
+                              th: ({node, ...props}) => (
+                                <th 
+                                  {...props} 
+                                  className="border border-border/50 dark:border-border/30 px-2 py-1 bg-muted/50 dark:bg-muted/20 font-medium" 
+                                />
+                              ),
+                              td: ({node, ...props}) => (
+                                <td 
+                                  {...props} 
+                                  className="border border-border/50 dark:border-border/30 px-2 py-1" 
+                                />
+                              ),
+                            }}
+                          >
+                            {message.content}
+                          </ReactMarkdown>
+                        </div>
+                      ) : (
+                        message.content
+                      )}
                     </div>
 
                     {message.role === "user" && (
                       <Avatar className="h-8 w-8 mt-1">
-                        <AvatarImage src="src/static/imgg.jpg" alt="User" />
+                        <AvatarImage src="/placeholder.svg" alt="User" />
                         <AvatarFallback className="bg-primary text-primary-foreground">
                           <User className="h-4 w-4" />
                         </AvatarFallback>
