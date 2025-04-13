@@ -71,3 +71,39 @@ Yes it is!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+
+
+
+0k1bQdRZOouI9xoQ
+
+python -m pip install "pymongo[srv]"==3.12
+
+
+mongodb+srv://<db_username>:<db_password>@protfolio-backend.eplz0wc.mongodb.net/?retryWrites=true&w=majority&appName=protfolio-backend
+
+
+
+Your current IP address (223.190.86.88) has been added to enable local connectivity. Only an IP address you add to your Access List will be able to connect to your project's clusters. Add more later in Network Access
+
+
+1CmoiUQnS7AWpMs0
+
+
+
+
+
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
+uri = "mongodb+srv://paritoshsharma0707:<db_password>@protfolio-backend.eplz0wc.mongodb.net/?retryWrites=true&w=majority&appName=protfolio-backend"
+
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)

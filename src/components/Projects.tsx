@@ -207,7 +207,7 @@ export default function Projects() {
 
         <div className="text-center mt-12">
           <a 
-            href="https://github.com/username" 
+            href="https://github.com/paritosh0707" 
             className="btn-outline inline-flex items-center gap-2"
             target="_blank"
             rel="noopener noreferrer"
