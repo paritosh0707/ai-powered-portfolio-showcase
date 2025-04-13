@@ -13,7 +13,7 @@ export const DefaultObject = () => {
         <octahedronGeometry args={[1, 0]} />
         <meshStandardMaterial 
           color="#9b87f5" 
-          wireframe 
+          wireframe={true}
           emissive="#9b87f5"
           emissiveIntensity={0.2}
         />

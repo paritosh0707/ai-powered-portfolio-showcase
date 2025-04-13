@@ -10,11 +10,10 @@ export const WebGLDetector = () => {
     const detectWebGL = () => {
       try {
         const canvas = document.createElement('canvas');
-        // Properly type the WebGL context
+        // Try to get WebGL context
         const gl = 
-          (canvas.getContext('webgl') as WebGLRenderingContext) || 
-          (canvas.getContext('experimental-webgl') as WebGLRenderingContext) ||
-          (canvas.getContext('webgl2') as WebGL2RenderingContext);
+          canvas.getContext('webgl') || 
+          canvas.getContext('experimental-webgl');
         
         if (!gl) {
           setIsWebGLSupported(false);
@@ -26,10 +25,12 @@ export const WebGLDetector = () => {
         }
         
         // Test if WebGL is working properly
-        const rendererInfo = gl.getExtension('WEBGL_debug_renderer_info');
-        if (rendererInfo) {
-          const renderer = gl.getParameter(rendererInfo.UNMASKED_RENDERER_WEBGL);
-          console.log('WebGL Renderer:', renderer);
+        if (gl && 'getExtension' in gl) {
+          const rendererInfo = gl.getExtension('WEBGL_debug_renderer_info');
+          if (rendererInfo && 'getParameter' in gl) {
+            const renderer = gl.getParameter(rendererInfo.UNMASKED_RENDERER_WEBGL);
+            console.log('WebGL Renderer:', renderer);
+          }
         }
         
         return true;

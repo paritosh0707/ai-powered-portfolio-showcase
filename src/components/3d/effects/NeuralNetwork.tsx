@@ -67,23 +67,15 @@ export const NeuralNetwork = () => {
         const fromPos = nodes[from].position as [number, number, number];
         const toPos = nodes[to].position as [number, number, number];
         
-        // Calculate line geometry
-        const points = [
+        // Create line geometry
+        const lineGeometry = new THREE.BufferGeometry().setFromPoints([
           new THREE.Vector3(...fromPos),
           new THREE.Vector3(...toPos)
-        ];
+        ]);
         
         return (
-          <line key={`connection-${i}`}>
-            <bufferGeometry attach="geometry">
-              <bufferAttribute
-                attach="attributes-position"
-                count={2}
-                array={new Float32Array(points.flatMap(p => [p.x, p.y, p.z]))}
-                itemSize={3}
-              />
-            </bufferGeometry>
-            <lineBasicMaterial color="#9b87f5" opacity={0.3} transparent />
+          <line key={`connection-${i}`} geometry={lineGeometry}>
+            <lineBasicMaterial color="#9b87f5" transparent opacity={0.3} />
           </line>
         );
       })}

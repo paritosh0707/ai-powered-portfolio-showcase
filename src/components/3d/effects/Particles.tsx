@@ -10,6 +10,7 @@ interface ParticlesProps {
 
 export const Particles = ({ count = 300, gpuTier = 2 }: ParticlesProps) => {
   const pointsRef = useRef<THREE.Points>(null!);
+  const materialRef = useRef<THREE.PointsMaterial>(null!);
   const particleCount = gpuTier > 1 ? count : Math.floor(count / 2);
   
   // Create particles with better distribution
@@ -36,10 +37,11 @@ export const Particles = ({ count = 300, gpuTier = 2 }: ParticlesProps) => {
       pointsRef.current.rotation.y += 0.0001;
       
       // Pulse effect on particles
-      const time = state.clock.elapsedTime;
-      const material = pointsRef.current.material as THREE.PointsMaterial;
-      material.size = 0.08 + Math.sin(time * 0.5) * 0.02;
-      material.opacity = 0.6 + Math.sin(time * 0.5) * 0.2;
+      if (materialRef.current) {
+        const time = state.clock.elapsedTime;
+        materialRef.current.size = 0.08 + Math.sin(time * 0.5) * 0.02;
+        materialRef.current.opacity = 0.6 + Math.sin(time * 0.5) * 0.2;
+      }
     }
   });
   
@@ -54,6 +56,7 @@ export const Particles = ({ count = 300, gpuTier = 2 }: ParticlesProps) => {
         />
       </bufferGeometry>
       <pointsMaterial
+        ref={materialRef}
         size={0.1}
         color="#9b87f5"
         transparent

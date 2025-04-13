@@ -2,6 +2,7 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, Stats, useDetectGPU } from "@react-three/drei";
+import { ErrorBoundary } from "react-error-boundary";
 
 // Import controllers
 import CameraController from "./controllers/CameraController";
@@ -16,6 +17,26 @@ const SkillsObject = lazy(() => import("./objects/SkillsObject"));
 const ProjectsObject = lazy(() => import("./objects/ProjectsObject"));
 const ContactObject = lazy(() => import("./objects/ContactObject"));
 const DefaultObject = lazy(() => import("./objects/DefaultObject"));
+
+// Fallback component when 3D objects fail to load
+const FallbackObject = () => {
+  return (
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color="#9b87f5" />
+    </mesh>
+  );
+};
+
+// Error fallback component
+const ErrorFallback = () => {
+  return (
+    <group>
+      <ambientLight intensity={0.5} />
+      <FallbackObject />
+    </group>
+  );
+};
 
 // Main Scene component
 export const Scene3D = ({ currentSection }: { currentSection: string }) => {
@@ -70,22 +91,30 @@ export const Scene3D = ({ currentSection }: { currentSection: string }) => {
 
   return (
     <div className="fixed inset-0 z-[-1]">
-      <Canvas shadows dpr={gpuTier ? [1, Math.min(gpuTier.tier, 2)] : [1, 1]}>
-        {showPerformanceStats && <Stats />}
-        <fog attach="fog" args={['#10131b', 20, 40]} />
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow />
-        <spotLight position={[-10, 10, 5]} angle={0.3} penumbra={1} intensity={0.8} castShadow />
-        
-        <Suspense fallback={null}>
-          <NeuralNetwork />
-          <Particles count={gpuTier && gpuTier.tier > 2 ? 500 : 200} gpuTier={gpuTier?.tier} />
-          {renderSectionObject()}
-        </Suspense>
-        
-        <CameraController target={currentSection} section={currentSection} />
-        <Environment preset="city" />
-      </Canvas>
+      <ErrorBoundary FallbackComponent={() => <div className="fixed inset-0 z-[-1] bg-gradient-to-br from-background to-background/80" />}>
+        <Canvas shadows dpr={gpuTier ? [1, Math.min(gpuTier.tier, 2)] : [1, 1]}>
+          {showPerformanceStats && <Stats />}
+          <fog attach="fog" args={['#10131b', 20, 40]} />
+          <ambientLight intensity={0.4} />
+          <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow />
+          <spotLight position={[-10, 10, 5]} angle={0.3} penumbra={1} intensity={0.8} castShadow />
+          
+          <Suspense fallback={<FallbackObject />}>
+            <ErrorBoundary fallback={<ErrorFallback />}>
+              <NeuralNetwork />
+            </ErrorBoundary>
+            <ErrorBoundary fallback={<FallbackObject />}>
+              <Particles count={gpuTier && gpuTier.tier > 2 ? 500 : 200} gpuTier={gpuTier?.tier} />
+            </ErrorBoundary>
+            <ErrorBoundary fallback={<FallbackObject />}>
+              {renderSectionObject()}
+            </ErrorBoundary>
+          </Suspense>
+          
+          <CameraController target={currentSection} section={currentSection} />
+          <Environment preset="city" />
+        </Canvas>
+      </ErrorBoundary>
     </div>
   );
 };
