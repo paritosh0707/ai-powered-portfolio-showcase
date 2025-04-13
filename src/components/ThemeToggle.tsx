@@ -23,7 +23,7 @@ export function ThemeToggle() {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence initial={false}>
         <motion.div
           key={theme}
           initial={{ opacity: 0, rotateY: 90 }}

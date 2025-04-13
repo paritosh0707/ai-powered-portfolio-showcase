@@ -10,10 +10,11 @@ export const WebGLDetector = () => {
     const detectWebGL = () => {
       try {
         const canvas = document.createElement('canvas');
+        // Properly type the WebGL context
         const gl = 
-          canvas.getContext('webgl') || 
-          canvas.getContext('experimental-webgl') ||
-          canvas.getContext('webgl2');
+          (canvas.getContext('webgl') as WebGLRenderingContext) || 
+          (canvas.getContext('experimental-webgl') as WebGLRenderingContext) ||
+          (canvas.getContext('webgl2') as WebGL2RenderingContext);
         
         if (!gl) {
           setIsWebGLSupported(false);

@@ -248,8 +248,9 @@ const Particles = ({ count = 300, gpuTier = 2 }: { count?: number, gpuTier?: num
       
       // Pulse effect on particles
       const time = state.clock.elapsedTime;
-      pointsRef.current.material.size = 0.08 + Math.sin(time * 0.5) * 0.02;
-      pointsRef.current.material.opacity = 0.6 + Math.sin(time * 0.5) * 0.2;
+      const material = pointsRef.current.material as THREE.PointsMaterial;
+      material.size = 0.08 + Math.sin(time * 0.5) * 0.02;
+      material.opacity = 0.6 + Math.sin(time * 0.5) * 0.2;
     }
   });
   
