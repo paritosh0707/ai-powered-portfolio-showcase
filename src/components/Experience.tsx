@@ -2,6 +2,7 @@
 import React from "react";
 import { Briefcase, Download, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type ExperienceItem = {
   title: string;
@@ -16,6 +17,7 @@ type ExperienceItem = {
 };
 
 export default function Experience() {
+  const isMobile = useIsMobile();
   const experiences: ExperienceItem[] = [
     {
       title: "Senior AI Engineer",
@@ -80,7 +82,7 @@ export default function Experience() {
   return (
     <section id="experience" className="py-24">
       <div className="container">
-        <div className="flex justify-between items-center mb-16">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-16">
           <h2 className="section-title">
             <Briefcase className="h-8 w-8 text-accent" />
             <span>Experience</span>
@@ -88,7 +90,7 @@ export default function Experience() {
           
           <Button 
             onClick={handleDownloadResume} 
-            className="flex items-center gap-2" 
+            className="flex items-center gap-2 self-start sm:self-auto" 
             variant="outline"
           >
             <Download className="h-4 w-4" />
@@ -96,14 +98,21 @@ export default function Experience() {
           </Button>
         </div>
 
-        <div className="timeline-container">
-          <div className="timeline-line"></div>
+        <div className="timeline-container relative">
+          {/* Only show the vertical line on larger screens */}
+          <div className="timeline-line hidden md:block"></div>
           
           {experiences.map((exp, index) => (
-            <div key={index} className="timeline-item animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
-              <div className="timeline-dot"></div>
+            <div 
+              key={index} 
+              className={`timeline-item ${isMobile ? 'flex flex-col mb-12 pb-8 border-b border-border/30 last:border-0' : 'md:grid md:grid-cols-2 gap-8 mb-16'} animate-fade-in`} 
+              style={{ animationDelay: `${index * 200}ms` }}
+            >
+              {/* Timeline dot (only visible on larger screens) */}
+              <div className="timeline-dot hidden md:block"></div>
               
-              <div className="timeline-date">
+              {/* Date and Location (arranged differently on mobile vs desktop) */}
+              <div className={`timeline-date ${isMobile ? 'mb-2' : 'md:text-right flex flex-col justify-center items-start md:items-end'}`}>
                 <span className="text-lg font-bold text-accent">{exp.period}</span>
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
                   <MapPin className="h-3 w-3" />
@@ -111,7 +120,8 @@ export default function Experience() {
                 </div>
               </div>
               
-              <div className="timeline-content">
+              {/* Experience Content */}
+              <div className={`timeline-content ${isMobile ? 'mt-4' : 'md:col-start-2'} glass-card p-6 rounded-lg`}>
                 <h3 className="text-xl font-bold">{exp.title}</h3>
                 <h4 className="text-lg font-medium text-accent mb-2">{exp.company}</h4>
                 <p className="text-foreground/80 mb-4">{exp.description}</p>
