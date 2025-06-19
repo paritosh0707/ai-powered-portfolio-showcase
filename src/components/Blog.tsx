@@ -1,41 +1,25 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { FileText, ArrowRight, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { blogPosts } from "@/data/blogPosts";
 
 export default function Blog() {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Building RAG Systems That Actually Work",
-      excerpt: "A deep dive into retrieval-augmented generation architectures and how to optimize them for production use cases.",
-      image: "placeholder.svg",
-      date: "April 15, 2025",
-      readTime: "12 min read",
-      tags: ["LLMs", "RAG", "NLP"],
-      slug: "building-rag-systems"
-    },
-    {
-      id: 2,
-      title: "Fine-tuning LLMs Without Breaking the Bank",
-      excerpt: "Practical strategies for efficiently fine-tuning large language models with parameter-efficient techniques like LoRA and QLoRA.",
-      image: "placeholder.svg",
-      date: "March 24, 2025",
-      readTime: "9 min read",
-      tags: ["LLMs", "Fine-tuning", "PEFT"],
-      slug: "fine-tuning-llms-efficiently"
-    },
-    {
-      id: 3,
-      title: "MLOps Best Practices for LLM Applications",
-      excerpt: "How to build robust MLOps pipelines specifically designed for deploying and monitoring LLM-based applications.",
-      image: "placeholder.svg",
-      date: "February 10, 2025",
-      readTime: "15 min read",
-      tags: ["MLOps", "LLMs", "Production"],
-      slug: "mlops-best-practices"
-    }
-  ];
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 6;
+
+  // Pagination logic
+  const totalPages = Math.ceil(blogPosts.length / blogsPerPage);
+  const startIndex = (currentPage - 1) * blogsPerPage;
+  const endIndex = startIndex + blogsPerPage;
+  const currentBlogs = blogPosts.slice(startIndex, endIndex);
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
 
   return (
     <section id="blog" className="py-24 bg-muted/20">
@@ -47,11 +31,11 @@ export default function Blog() {
 
         <div className="relative">
           <div className="grid md:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
+            {currentBlogs.map((post, idx) => (
               <div 
                 key={post.id} 
                 className="glass-card overflow-hidden group animate-scale-in block"
-                style={{ animationDelay: `${(post.id - 1) * 100}ms` }}
+                style={{ animationDelay: `${idx * 100}ms` }}
               >
                 <div className="h-48 overflow-hidden">
                   <img
@@ -88,7 +72,8 @@ export default function Blog() {
                   </div>
                   
                   <Link 
-                    to={`/blog/${post.slug}`} 
+                    to={{ pathname: `/blog/${post.slug}` }}
+                    state={{ from: 'home' }}
                     className="flex items-center font-medium text-accent group-hover:translate-x-1 transition-transform"
                   >
                     <span>Read more</span>
@@ -98,20 +83,50 @@ export default function Blog() {
               </div>
             ))}
           </div>
-          
-          <button 
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-10 hidden md:flex"
-            aria-label="Previous articles"
-          >
-            <ArrowRight className="h-5 w-5 rotate-180" />
-          </button>
-          
-          <button 
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-10 hidden md:flex"
-            aria-label="Next articles"
-          >
-            <ArrowRight className="h-5 w-5" />
-          </button>
+          {/* Navigation Buttons - Desktop */}
+          {currentPage > 1 && (
+            <button 
+              onClick={handlePreviousPage}
+              className="hidden md:flex absolute -left-16 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
+              aria-label="Previous articles"
+              style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+            >
+              <ArrowRight className="h-5 w-5 rotate-180" />
+            </button>
+          )}
+          {currentPage < totalPages && (
+            <button 
+              onClick={handleNextPage}
+              className="hidden md:flex absolute -right-16 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
+              aria-label="Next articles"
+              style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+            >
+              <ArrowRight className="h-5 w-5" />
+            </button>
+          )}
+          {/* Navigation Buttons - Mobile (below grid) */}
+          <div className="flex md:hidden justify-center gap-4 mt-8">
+            {currentPage > 1 && (
+              <button
+                onClick={handlePreviousPage}
+                className="bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
+                aria-label="Previous articles"
+                style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+              >
+                <ArrowRight className="h-5 w-5 rotate-180" />
+              </button>
+            )}
+            {currentPage < totalPages && (
+              <button
+                onClick={handleNextPage}
+                className="bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
+                aria-label="Next articles"
+                style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+              >
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="text-center mt-12">

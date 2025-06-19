@@ -31,10 +31,10 @@ export default function About() {
                 Experience Highlights
               </h3>
               <ul className="space-y-2 text-foreground/80">
-                <li>• Led a team of 5 ML engineers at Incedo</li>
-                <li>• Deployed 12+ ML models to production</li>
-                <li>• Reduced inference costs by 45% through optimization</li>
-                <li>• Mentored 20+ junior data scientists</li>
+                <li>• Led a team of 5 AI engineers at Incedo</li>
+                <li>• Built an AI-powered QA automation system boosting productivity by 63%</li>
+                <li>• Developed a GenAI data validation platform with a 77% productivity gain</li>
+                {/* <li>• Mentored 20+ junior data scientists</li> */}
               </ul>
             </div>
 
@@ -44,10 +44,9 @@ export default function About() {
                 Education
               </h3>
               <ul className="space-y-2 text-foreground/80">
-                <li>• MSc in Machine Learning, Stanford University</li>
-                <li>• BSc in Computer Science, MIT</li>
-                <li>• Deep Learning Specialization, Coursera</li>
-                <li>• MLOps Certification, Google Cloud</li>
+                <li>• B.E. Computer Science – Thapar University</li>
+                <li>• NLP & Deep Learning Specialization – Coursera</li>
+                <li>• Generative AI Bootcamp – LLMOps Focus</li>
               </ul>
             </div>
           </div>
@@ -58,10 +57,10 @@ export default function About() {
               Fun Facts
             </h3>
             <ul className="grid md:grid-cols-2 gap-2 text-foreground/80">
-              <li>• Avid rock climber and outdoor enthusiast</li>
-              <li>• Published author on MLOps best practices</li>
-              <li>• Open-source contributor to Hugging Face and LangChain</li>
-              <li>• Built my first neural network at age 16</li>
+              <li>• If I weren’t an AI engineer, I’d probably be a full-time AI teacher.</li>
+              <li>• I love teaching complex AI concepts in a way that even non-tech folks can understand.</li>
+              <li>• I enjoy turning cutting-edge research into hands-on lessons—one slide deck at a time.</li>
+              <li>• I’ve mentored 20+ junior data scientists and love breaking down tough AI topics into ‘aha’ moments.</li>
             </ul>
           </div>
         </div>

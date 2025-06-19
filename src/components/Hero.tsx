@@ -131,9 +131,9 @@ export default function Hero() {
       
       <div className="z-10 text-center max-w-3xl mx-auto px-4 animate-fade-in flex flex-col items-center">
         <div className="mb-8">
-          <Avatar className="w-40 h-40 border-4 border-accent/30 shadow-xl shadow-accent/20 animate-scale-in">
+          <Avatar className="w-60 h-60 border-4 border-accent/30 shadow-xl shadow-accent/20 animate-scale-in">
             <AvatarImage src="src/static/imgg.jpg" alt="Paritosh Sharma" />
-            <AvatarFallback className="text-4xl bg-accent/10 text-accent">JD</AvatarFallback>
+            <AvatarFallback className="text-4xl bg-accent/10 text-accent">PS</AvatarFallback>
           </Avatar>
         </div>
         

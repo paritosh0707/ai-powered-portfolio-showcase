@@ -8,16 +8,18 @@ export default function Skills() {
       title: "Languages & Frameworks",
       icon: <Code className="h-6 w-6 text-accent" />,
       skills: [
-        "Python", "PyTorch", "TensorFlow", "SQL", 
-        "LangChain", "Scikit-learn", "React", "FastAPI"
+        "Python", "LangGraph",
+        "LangChain", "Scikit-learn",
+        "PyTorch", "FastAPI",
+        "Transformers (Hugging Face)", "Streamlit"
       ],
     },
     {
       title: "AI & ML",
       icon: <Cpu className="h-6 w-6 text-accent" />,
       skills: [
-        "Large Language Models", "Natural Language Processing", 
-        "Computer Vision", "Reinforcement Learning", 
+        "LLMs (Large Language Models)", "Natural Language Processing", 
+        "Multi-Agent Systems", "Prompt Engineering", 
         "Generative AI", "Deep Learning", 
         "Machine Learning", "MLOps"
       ],
@@ -26,17 +28,22 @@ export default function Skills() {
       title: "Data Engineering",
       icon: <Database className="h-6 w-6 text-accent" />,
       skills: [
-        "Data Pipelines", "ETL", "Spark", "Pandas", 
-        "PostgreSQL", "MongoDB", "Redis", "AWS S3"
+        "ETL / ELT Pipelines", "Data Validation & Reconciliation",
+        "PySpark", "Spark",
+        "PostgreSQL", "Azure Blob Storage",
+        "AWS S3", "MongoDB"
       ],
     },
     {
       title: "Infrastructure & DevOps",
       icon: <Server className="h-6 w-6 text-accent" />,
       skills: [
-        "Docker", "Kubernetes", "AWS", "GCP", 
-        "MLflow", "CI/CD", "Terraform", "Git"
-      ],
+        "Docker", "Kubernetes",
+        "Azure", "AWS",
+        "Git", "CI/CD",
+        "MLflow", "DVC"
+      ]
+      ,
     },
   ];
 
@@ -73,7 +80,7 @@ export default function Skills() {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        {/* <div className="mt-16 text-center">
           <h3 className="text-xl font-bold mb-6">Tools & Technologies</h3>
           <div className="flex flex-wrap justify-center gap-2">
             {[
@@ -92,7 +99,7 @@ export default function Skills() {
               </span>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

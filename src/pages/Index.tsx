@@ -1,7 +1,6 @@
-
 import React from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+// import Navbar from "@/components/Navbar";
+// import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
@@ -14,17 +13,17 @@ import ChatAssistant from "@/components/ChatAssistant";
 export default function Index() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      {/* <Navbar /> */}
       <main className="flex-1">
         <Hero />
         <About />
         <Skills />
         <Experience />
         <Projects />
-        <Blog />
+        {/* <Blog /> */}
         <Contact />
       </main>
-      <Footer />
+      {/* <Footer /> */}
       <ChatAssistant />
     </div>
   );

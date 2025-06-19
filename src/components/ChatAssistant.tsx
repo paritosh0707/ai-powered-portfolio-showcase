@@ -19,7 +19,7 @@ type Message = {
 const INITIAL_MESSAGES: Message[] = [
   {
     id: "1",
-    content: "Hi there! I'm Paritosh's AI assistant. I'm trained on his projects, skills, and blog articles. How can I help you today?",
+    content: "Hi there! I'm Paritosh's AI assistant. I'm here to help you with anything you need on behalf of Paritosh. How can I help you today?",
     role: "assistant",
     timestamp: new Date(),
   },

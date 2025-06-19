@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Briefcase, Download, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,9 +20,9 @@ export default function Experience() {
   const experiences: ExperienceItem[] = [
     {
       title: "Senior AI Engineer",
-      company: "TechCorp",
-      location: "San Francisco, CA",
-      period: "2022 - Present",
+      company: "Incedo Solutions Ltd",
+      location: "Gurugram",
+      period: "2024 - Present",
       description: "Leading the development of generative AI applications and MLOps infrastructure. Mentoring junior engineers and architecting scalable ML systems.",
       projects: [
         {
@@ -37,10 +36,10 @@ export default function Experience() {
       ]
     },
     {
-      title: "Data Scientist",
-      company: "DataInnovate",
-      location: "New York, NY",
-      period: "2019 - 2022",
+      title: "AI Engineer",
+      company: "Incedo Solutions Ltd",
+      location: "Gurugram",
+      period: "2022 - 2024",
       description: "Developed and deployed machine learning models for fintech applications. Improved data pipelines and built recommendation systems.",
       projects: [
         {
@@ -53,31 +52,24 @@ export default function Experience() {
         }
       ]
     },
-    {
-      title: "ML Research Intern",
-      company: "AI Research Lab",
-      location: "Boston, MA",
-      period: "2018 - 2019",
-      description: "Conducted research on deep learning methods for computer vision applications. Published 2 papers in top-tier conferences.",
-      projects: [
-        {
-          title: "Advanced Object Detection",
-          description: "Developed a novel approach for real-time object detection on edge devices, achieving 30 FPS on Raspberry Pi."
-        },
-        {
-          title: "Transfer Learning Benchmark",
-          description: "Created a comprehensive benchmark for transfer learning techniques across various computer vision tasks."
-        }
-      ]
-    }
+    // {
+    //   title: "AI Intern",
+    //   company: "Incedo Solutions Ltd",
+    //   location: "Gurugram",
+    //   period: "2018 - 2019",
+    //   description: "Conducted research on deep learning methods for computer vision applications. Published 2 papers in top-tier conferences.",
+    //   projects: [
+    //     {
+    //       title: "Advanced Object Detection",
+    //       description: "Developed a novel approach for real-time object detection on edge devices, achieving 30 FPS on Raspberry Pi."
+    //     },
+    //     {
+    //       title: "Transfer Learning Benchmark",
+    //       description: "Created a comprehensive benchmark for transfer learning techniques across various computer vision tasks."
+    //     }
+    //   ]
+    // }
   ];
-
-  const handleDownloadResume = () => {
-    // This would typically download a PDF file
-    // For now, we'll just log a message
-    console.log("Resume download initiated");
-    alert("Resume download would start now. This is a placeholder for the actual download functionality.");
-  };
 
   return (
     <section id="experience" className="py-24">
@@ -88,14 +80,14 @@ export default function Experience() {
             <span>Experience</span>
           </h2>
           
-          <Button 
-            onClick={handleDownloadResume} 
-            className="flex items-center gap-2 self-start sm:self-auto" 
-            variant="outline"
+          <a 
+            href="/src/static/resume/Paritosh_Sharma_Data_Scientist.pdf" 
+            download
+            className="flex items-center gap-2 self-start sm:self-auto btn-outline"
           >
             <Download className="h-4 w-4" />
             Download Resume
-          </Button>
+          </a>
         </div>
 
         <div className="timeline-container relative">
