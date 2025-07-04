@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { ArrowUpRight, Github, Terminal, Layers, Brain, FileCode, Eye, ArrowRight } from "lucide-react";
 import { projects } from "@/data/projects";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function Projects() {
   const [filter, setFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 6;
+  const { toast } = useToast();
 
   const categories = [
     { id: "all", label: "All" },
     { id: "nlp", label: "NLP" },
     { id: "llm", label: "LLMs" },
-    { id: "cv", label: "Computer Vision" },
-    { id: "mlops", label: "MLOps" },
+    { id: "Agentic AI", label: "Agentic AI" },
+    { id: "llmops", label: "LLMops" },
     { id: "genai", label: "Generative AI" },
+    { id: "data", label: "Data" },
+    { id: "engineering", label: "Engineering" },
   ];
 
   const filteredProjects = filter === "all" 
@@ -32,6 +36,30 @@ export default function Projects() {
 
   const handleNextPage = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const handleProjectClick = (project, type) => {
+    if (project.status === "in-progress") {
+      toast({
+        // Custom content for a more inviting, card-like toast
+        duration: 6000,
+        action: (
+          <div className="bg-white dark:bg-background text-gray-800 dark:text-foreground p-5 w-[360px] rounded-xl shadow-xl space-y-2 flex flex-col items-start">
+            <h4 className="text-lg font-semibold mb-2">Coming Soon!</h4>
+            <p className="text-sm mb-2">🚧 We’re cooking something awesome here. Case study coming soon!</p>
+            <button
+              className="inline-block mt-1 px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700 transition font-semibold shadow"
+              onClick={() => window.open('https://paritosh0707.github.io/paritosh-tech-journal/', '_blank')}
+            >
+              Explore Tech Journal
+            </button>
+          </div>
+        ),
+      });
+    } else {
+      const url = type === "github" ? project.github : project.demo;
+      window.open(url, "_blank");
+    }
   };
 
   // Reset to first page when filter changes
@@ -117,25 +145,21 @@ export default function Projects() {
                   </div>
                   
                   <div className="flex justify-between mt-4">
-                    <a
-                      href={project.github}
+                    <button
+                      onClick={() => handleProjectClick(project, "github")}
                       className="flex items-center gap-1 text-sm hover:text-accent transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
                     >
                       <Github className="h-4 w-4" />
                       <span>Code</span>
-                    </a>
-                    <a
-                      href={project.demo}
+                    </button>
+                    <button
+                      onClick={() => handleProjectClick(project, "demo")}
                       className="flex items-center gap-1 text-sm hover:text-accent transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
                     >
-                      <Eye className="h-4 w-4" />
-                      <span>Live Demo</span>
+                      <FileCode className="h-4 w-4" />
+                      <span>Case Study</span>
                       <ArrowUpRight className="h-3 w-3" />
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
