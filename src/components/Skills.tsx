@@ -5,45 +5,36 @@ import { Code, Database, Server, Cpu } from "lucide-react";
 export default function Skills() {
   const skillCategories = [
     {
-      title: "Languages & Frameworks",
-      icon: <Code className="h-6 w-6 text-accent" />,
-      skills: [
-        "Python", "LangGraph",
-        "LangChain", "Scikit-learn",
-        "PyTorch", "FastAPI",
-        "Transformers (Hugging Face)", "Streamlit"
-      ],
-    },
-    {
-      title: "AI & ML",
+      title: "Agentic AI",
       icon: <Cpu className="h-6 w-6 text-accent" />,
       skills: [
-        "LLMs (Large Language Models)", "Natural Language Processing", 
-        "Multi-Agent Systems", "Prompt Engineering", 
-        "Generative AI", "Deep Learning", 
-        "Machine Learning", "MLOps"
+        "LangChain", "LangGraph","MCP(Model Context Protocol)", "ACP(Agentic Communication Protocol)", "Agentic RAG",
+        "CrewAI", "Multi-Agent Systems", "Prompt Engineering"
       ],
     },
     {
-      title: "Data Engineering",
-      icon: <Database className="h-6 w-6 text-accent" />,
-      skills: [
-        "ETL / ELT Pipelines", "Data Validation & Reconciliation",
-        "PySpark", "Spark",
-        "PostgreSQL", "Azure Blob Storage",
-        "AWS S3", "MongoDB"
-      ],
-    },
-    {
-      title: "Infrastructure & DevOps",
+      title: "LLMOps & MLOps",
       icon: <Server className="h-6 w-6 text-accent" />,
       skills: [
-        "Docker", "Kubernetes",
-        "Azure", "AWS",
-        "Git", "CI/CD",
-        "MLflow", "DVC"
-      ]
-      ,
+        "Fine-tuning", "PEFT", "QLoRA", "MLflow",
+        "DVC", "Observability & Evaluation", "BentoML", "Model Deployment"
+      ],
+    },
+    {
+      title: "Cloud & Infrastructure",
+      icon: <Database className="h-6 w-6 text-accent" />,
+      skills: [
+        "FastAPI", "Docker", "Kubernetes", "Azure OpenAI",
+        "AWS Bedrock", "Vertex AI", "Git", "CI/CD"
+      ],
+    },
+    {
+      title: "Programming, ML & NLP",
+      icon: <Code className="h-6 w-6 text-accent" />,
+      skills: [
+        "Python", "SQL", "PySpark", "Transformers",
+        "Hugging Face", "Deep Learning", "Scikit-learn", "PyTorch"
+      ],
     },
   ];
 
