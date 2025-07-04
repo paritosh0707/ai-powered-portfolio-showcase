@@ -40,13 +40,19 @@ export default function Projects() {
 
   const handleProjectClick = (project, type) => {
     if (project.status === "in-progress") {
+      let title = "Coming Soon!";
+      let description = "";
+      if (type === "github") {
+        description = "🚧 The code repository will be public soon. Stay tuned!";
+      } else {
+        description = "🚧 We're cooking something awesome here. Case study coming soon!";
+      }
       toast({
-        // Custom content for a more inviting, card-like toast
         duration: 6000,
         action: (
           <div className="bg-white dark:bg-background text-gray-800 dark:text-foreground p-5 w-[360px] rounded-xl shadow-xl space-y-2 flex flex-col items-start">
-            <h4 className="text-lg font-semibold mb-2">Coming Soon!</h4>
-            <p className="text-sm mb-2">🚧 We’re cooking something awesome here. Case study coming soon!</p>
+            <h4 className="text-lg font-semibold mb-2">{title}</h4>
+            <p className="text-sm mb-2">{description}</p>
             <button
               className="inline-block mt-1 px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700 transition font-semibold shadow"
               onClick={() => window.open('https://paritosh0707.github.io/paritosh-tech-journal/', '_blank')}
