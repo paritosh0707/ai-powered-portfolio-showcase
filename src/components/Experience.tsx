@@ -132,7 +132,7 @@ export default function Experience() {
           </h2>
           
           <a 
-            href="/Paritosh_Sharma_Data_Scientist.pdf" 
+            href="/Paritosh_Sharma_Senior_AI_Engineer.pdf" 
             download
             className="flex items-center gap-2 self-start sm:self-auto btn-outline"
           >
