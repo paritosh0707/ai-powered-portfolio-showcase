@@ -38,6 +38,7 @@ export default function Navbar() {
     { name: "Projects", href: "#projects" },
     // { name: "Blog", href: "#blog" },
     // { name: "Mindstack", href: "/mindstack" },
+    { name: "Tech Journal", href: "https://paritosh0707.github.io/paritosh-tech-journal/", external: true },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -81,7 +82,18 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <nav className="flex space-x-6">
               {navLinks.map((link) => (
-                link.href.startsWith('/') ? (
+                link.external ? (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nav-link text-sm font-medium"
+                    onClick={closeMenu}
+                  >
+                    {link.name}
+                  </a>
+                ) : link.href.startsWith('/') ? (
                   <Link
                     key={link.name}
                     to={link.href}
@@ -135,7 +147,18 @@ export default function Navbar() {
         </button>
         <div className="flex-1 flex flex-col items-center justify-center space-y-8 p-8 overflow-y-auto">
           {navLinks.map((link) => (
-            link.href.startsWith('/') ? (
+            link.external ? (
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link text-xl font-medium"
+                onClick={closeMenu}
+              >
+                {link.name}
+              </a>
+            ) : link.href.startsWith('/') ? (
               <Link
                 key={link.name}
                 to={link.href}

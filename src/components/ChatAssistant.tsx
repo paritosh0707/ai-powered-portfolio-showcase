@@ -251,7 +251,7 @@ export default function ChatAssistant() {
                   <div className="flex gap-2 max-w-[80%]">
                     {message.role === "assistant" && (
                       <Avatar className="h-8 w-8 mt-1">
-                      <AvatarImage src="src/static/imgg.jpg" alt="AI" />
+                      <AvatarImage src="/imgg.jpg" alt="AI" />
                         <AvatarFallback className="bg-accent text-accent-foreground">
                           <Bot className="h-4 w-4" />
                         </AvatarFallback>

@@ -23,15 +23,43 @@ export default function Experience() {
       company: "Incedo Solutions Ltd",
       location: "Gurugram",
       period: "2024 - Present",
-      description: "Leading the development of generative AI applications and MLOps infrastructure. Mentoring junior engineers and architecting scalable ML systems.",
+      description:
+        "Orchestrated the scale-up and enterprise rollout of an LLM-powered QA automation platform for 3 major clients. Led a cross-functional team to deliver multi-agent user story intelligence, agentic API testing, and multimodal QA chatbot solutions. Championed developer enablement and standardized GenAI infrastructure across the org.",
       projects: [
         {
-          title: "Enterprise LLM Platform",
-          description: "Built a scalable platform for fine-tuning and deploying large language models, reducing costs by 45% and improving model performance by 35%."
+          title: "User Story Intelligence System",
+          description:
+            "Production-ready, multi-agent system that parsed 50-page PRDs into clustered epics and sprint-ready stories; generated 180+ user stories in under 3 minutes."
         },
         {
-          title: "Intelligent Document Processing",
-          description: "Developed an end-to-end document processing system using OCR, NER, and LLMs with 95% accuracy."
+          title: "Agentic API Testing Framework",
+          description:
+            "Automated test generation and batch execution for OpenAPI, Postman, and legacy SOAP; 850+ test cases generated in under 2 minutes."
+        },
+        {
+          title: "UI Testing Pipeline & MCP Server",
+          description:
+            "Dynamic test generation and codebase-aware artifact reuse via in-house Model Context Protocol server; improved productivity by 83% (manual) and 78% (automation)."
+        },
+        {
+          title: "Multimodal QA Chatbot",
+          description:
+            "Deployed chatbot supporting documents, screenshots, and contextual queries with long-memory tracking and semantic context handling."
+        },
+        {
+          title: "Agent Builder Platform",
+          description:
+            "No-code platform enabling non-AI engineers to assemble LangGraph workflows with self-improvement loops and shared toolsets."
+        },
+        {
+          title: "GenAI Infrastructure & Frameworks",
+          description:
+            "Standardized internal AI framework: RagTune (configurable RAG engine), FineTune (modular LLM fine-tuning toolkit), embedding validators, agent tracing, and unified MCP servers."
+        },
+        {
+          title: "Developer Enablement & Strategy Alignment",
+          description:
+            "Documented prompt patterns, agent chaining, and RAG tuning; reduced onboarding time and aligned GenAI-driven test pipelines with domain-specific QA strategy."
         }
       ]
     },
@@ -40,15 +68,38 @@ export default function Experience() {
       company: "Incedo Solutions Ltd",
       location: "Gurugram",
       period: "2022 - 2024",
-      description: "Developed and deployed machine learning models for fintech applications. Improved data pipelines and built recommendation systems.",
+      description:
+        "Conceptualized and architected the company’s first LLM-powered QA automation platform from scratch. Implemented scalable backend APIs and engineered foundational test generation, data testing, and agentic workflow modules.",
       projects: [
         {
-          title: "Fraud Detection System",
-          description: "Implemented ML models that reduced fraud by 67% and saved the company $2.3M annually."
+          title: "LLM-powered QA Automation Platform",
+          description:
+            "Built from scratch using FastAPI, Docker, and Kubernetes; enabled scalable backend APIs and platform extensibility."
         },
         {
-          title: "Customer Segmentation Engine",
-          description: "Created a dynamic clustering algorithm that increased marketing campaign effectiveness by 41%."
+          title: "Test Case Generation Engine",
+          description:
+            "Engineered initial engine using Corrective RAG with hierarchical embeddings; integrated JIRA workflows and TestRail for scenario coverage."
+        },
+        {
+          title: "LangChain Agent Prototypes",
+          description:
+            "Prototyped agents for document parsing, prompt chaining, and semantic story mapping—laying the foundation for agentic workflow orchestration."
+        },
+        {
+          title: "Data Testing Module",
+          description:
+            "Developed PySpark and SQL transformation logic for mapping specs; implemented auto-mapping, record comparison, and end-to-end validation reporting."
+        },
+        {
+          title: "API Testing Engine",
+          description:
+            "Built first version capable of parsing Swagger/Postman inputs, auto-generating payloads, and executing one-click test runs with structured logs."
+        },
+        {
+          title: "Enterprise POC & Impact",
+          description:
+            "Piloted and delivered the platform’s first enterprise POC, achieving a 43% reduction in manual QA effort within 2 sprints and securing leadership approval to scale." 
         }
       ]
     },
@@ -81,7 +132,7 @@ export default function Experience() {
           </h2>
           
           <a 
-            href="/src/static/resume/Paritosh_Sharma_Data_Scientist.pdf" 
+            href="/Paritosh_Sharma_Data_Scientist.pdf" 
             download
             className="flex items-center gap-2 self-start sm:self-auto btn-outline"
           >
