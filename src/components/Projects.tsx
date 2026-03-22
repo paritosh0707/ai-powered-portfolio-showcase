@@ -1,233 +1,264 @@
-import React, { useState } from "react";
-import { ArrowUpRight, Github, Terminal, Layers, Brain, FileCode, Eye, ArrowRight } from "lucide-react";
-import { projects } from "@/data/projects";
+import { ArrowUpRight, Github } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { FadeIn, Stagger, StaggerItem, motion } from "@/components/ui/motion";
+
+const featured = {
+  title: "IntelliQA Platform",
+  desc: "Enterprise AI platform for QA automation using multi-agent orchestration and LLM-driven workflows.",
+  columns: [
+    {
+      label: "What it does",
+      items: [
+        "Generates test cases, scripts, and validations",
+        "Covers UI, API, and data testing",
+        "Supports end-to-end QA lifecycle",
+      ],
+    },
+    {
+      label: "How it is built",
+      items: [
+        "Multi-agent architecture using orchestration frameworks",
+        "Retrieval pipelines and evaluation layers",
+        "Modular and scalable system design",
+      ],
+    },
+    {
+      label: "Impact",
+      items: [
+        "80%+ productivity improvement",
+        "Deployed across enterprise clients",
+        "Reduced manual QA effort significantly",
+      ],
+    },
+  ],
+};
+
+const coreSystems = [
+  {
+    title: "Dockrion",
+    desc: "A framework for building and deploying AI agents and workflows with structured configurations and containerized execution.",
+    highlights: [
+      "Agent deployment abstraction",
+      "Workflow orchestration via config-driven design",
+      "Multi-tenant and scalable architecture concepts",
+    ],
+  },
+  {
+    title: "LLM Blocks",
+    desc: "A modular architecture layer for reusable LLM components, enabling faster development of AI workflows and pipelines.",
+    highlights: [
+      "Reusable building blocks for AI systems",
+      "Standardized prompt and pipeline design",
+      "Supports rapid system prototyping",
+    ],
+  },
+];
+
+const exploration = {
+  title: "GenAI Hub",
+  desc: "A collection of applied experiments, POCs, and mini-systems exploring emerging patterns in generative AI, multi-agent systems, and automation workflows.",
+  line: "A continuous playground for building, testing, and refining AI ideas into practical systems.",
+};
 
 export default function Projects() {
-  const [filter, setFilter] = useState<string>("all");
-  const [currentPage, setCurrentPage] = useState(1);
-  const projectsPerPage = 6;
   const { toast } = useToast();
 
-  const categories = [
-    { id: "all", label: "All" },
-    { id: "nlp", label: "NLP" },
-    { id: "llm", label: "LLMs" },
-    { id: "Agentic AI", label: "Agentic AI" },
-    { id: "llmops", label: "LLMops" },
-    { id: "genai", label: "Generative AI" },
-    { id: "data", label: "Data" },
-    { id: "engineering", label: "Engineering" },
-  ];
-
-  const filteredProjects = filter === "all" 
-    ? projects 
-    : projects.filter(project => project.categories.includes(filter));
-
-  // Pagination logic
-  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-  const startIndex = (currentPage - 1) * projectsPerPage;
-  const endIndex = startIndex + projectsPerPage;
-  const currentProjects = filteredProjects.slice(startIndex, endIndex);
-
-  const handlePreviousPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  const showCaseStudyToast = () => {
+    toast({
+      title: "Coming Soon",
+      description: "Case study will be published soon. Stay tuned!",
+      duration: 4000,
+    });
   };
 
-  const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const showGithubToast = () => {
+    toast({
+      title: "Coming Soon",
+      description: "Repository going live soon. The codebase will be made public shortly.",
+      duration: 4000,
+    });
   };
 
-  const handleProjectClick = (project, type) => {
-    if (project.status === "in-progress") {
-      let title = "Coming Soon!";
-      let description = "";
-      if (type === "github") {
-        description = "🚧 The code repository will be public soon. Stay tuned!";
-      } else {
-        description = "🚧 We're cooking something awesome here. Case study coming soon!";
-      }
-      toast({
-        duration: 6000,
-        action: (
-          <div className="bg-white dark:bg-background text-gray-800 dark:text-foreground p-5 w-[360px] rounded-xl shadow-xl space-y-2 flex flex-col items-start">
-            <h4 className="text-lg font-semibold mb-2">{title}</h4>
-            <p className="text-sm mb-2">{description}</p>
-            <button
-              className="inline-block mt-1 px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700 transition font-semibold shadow"
-              onClick={() => window.open('https://paritosh0707.github.io/paritosh-tech-journal/', '_blank')}
-            >
-              Explore Tech Journal
-            </button>
-          </div>
-        ),
-      });
-    } else {
-      const url = type === "github" ? project.github : project.demo;
-      window.open(url, "_blank");
-    }
+  const showExperimentsToast = () => {
+    toast({
+      title: "Coming Soon",
+      description: "Experiments and explorations going live soon. Stay tuned!",
+      duration: 4000,
+    });
   };
-
-  // Reset to first page when filter changes
-  React.useEffect(() => {
-    setCurrentPage(1);
-  }, [filter]);
 
   return (
-    <section id="projects" className="py-24">
-      <div className="container">
-        <h2 className="section-title mb-16 text-center">
-          <Layers className="h-8 w-8 text-accent mr-2" />
-          <span>Projects & Case Studies</span>
-        </h2>
+    <section id="projects" className="bg-surface-container-low">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <FadeIn>
+          <span className="text-xs font-semibold text-accent uppercase tracking-[0.2em] mb-5 block">
+            Selected Work
+          </span>
+          <h2
+            className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-foreground mb-4 leading-tight"
+            style={{ letterSpacing: "-0.035em" }}
+          >
+            Selected Work
+          </h2>
+          <p className="text-[15px] text-muted-foreground max-w-2xl mb-14 leading-relaxed">
+            Systems where AI meets production and experimentation.
+          </p>
+        </FadeIn>
 
-        <div className="flex justify-center flex-wrap gap-2 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                filter === category.id
-                  ? "bg-accent text-white"
-                  : "bg-muted hover:bg-muted/80 text-foreground/80"
-              }`}
-              onClick={() => setFilter(category.id)}
-            >
-              {category.label}
-            </button>
-          ))}
-        </div>
+        {/* Block 1 — Featured System */}
+        <FadeIn delay={0.1}>
+          <motion.div
+            className="relative p-6 md:p-8 rounded-lg border border-border/40 bg-card mb-6 overflow-hidden"
+            whileHover={{ y: -2 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="absolute left-0 top-6 bottom-6 w-[3px] rounded-full bg-accent" />
 
-        <div className="relative">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentProjects.map((project, idx) => (
-              <div 
-                key={project.id} 
-                className="glass-card overflow-hidden group animate-scale-in"
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                <div className="h-48 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                
-                <div className="p-6">
-                  <div className="flex flex-wrap gap-1 mb-3">
-                    {project.categories.map((category, i) => (
-                      <span key={i} className="badge badge-secondary text-xs">
-                        {categories.find(c => c.id === category)?.label}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  
-                  <p className="text-foreground/80 text-sm mb-4">
-                    {project.description}
-                  </p>
-                  
-                  <div className="mb-4">
-                    <div className="flex items-center gap-1 text-sm text-accent mb-1">
-                      <Brain className="h-4 w-4" />
-                      <span className="font-medium">Impact:</span>
-                    </div>
-                    <p className="text-sm text-foreground/80">{project.impact}</p>
-                  </div>
-                  
-                  <div className="mb-4">
-                    <div className="flex items-center gap-1 text-sm text-accent mb-1">
-                      <Terminal className="h-4 w-4" />
-                      <span className="font-medium">Tech Stack:</span>
-                    </div>
-                    <div className="flex flex-wrap gap-1">
-                      {project.stack.map((tech, i) => (
-                        <span key={i} className="badge text-xs">
-                          {tech}
-                        </span>
+            <div className="pl-5">
+              <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-2">
+                {featured.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-3xl mb-8">
+                {featured.desc}
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-8">
+                {featured.columns.map((col) => (
+                  <div key={col.label}>
+                    <span className="text-[10px] font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-3 block">
+                      {col.label}
+                    </span>
+                    <ul className="space-y-2">
+                      {col.items.map((item, i) => (
+                        <li
+                          key={i}
+                          className="text-sm text-foreground/80 leading-relaxed flex items-start gap-2"
+                        >
+                          <span className="w-1 h-1 rounded-full bg-accent/50 shrink-0 mt-2" />
+                          {item}
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
-                  
-                  <div className="flex justify-between mt-4">
+                ))}
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={showCaseStudyToast}
+                  className="btn-primary inline-flex items-center gap-2 text-sm"
+                >
+                  View Case Study
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </button>
+                <button
+                  onClick={showGithubToast}
+                  className="btn-outline inline-flex items-center gap-2 text-sm"
+                >
+                  <Github className="h-3.5 w-3.5" />
+                  GitHub
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </FadeIn>
+
+        {/* Block 2 — Core Systems */}
+        <Stagger className="grid md:grid-cols-2 gap-4 mb-4" staggerDelay={0.1}>
+          {coreSystems.map((sys) => (
+            <StaggerItem key={sys.title}>
+              <motion.div
+                className="relative p-5 md:p-6 rounded-lg border border-border/40 bg-card hover:border-accent/30 transition-colors overflow-hidden h-full"
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="absolute left-0 top-5 bottom-5 w-[2px] rounded-full bg-accent/50" />
+
+                <div className="pl-4">
+                  <h3 className="font-display font-semibold text-base md:text-lg text-foreground mb-2">
+                    {sys.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                    {sys.desc}
+                  </p>
+                  <ul className="space-y-1.5 mb-4">
+                    {sys.highlights.map((h, i) => (
+                      <li
+                        key={i}
+                        className="text-xs text-foreground/70 flex items-start gap-2"
+                      >
+                        <span className="w-1 h-1 rounded-full bg-accent/50 shrink-0 mt-1.5" />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex items-center gap-4">
                     <button
-                      onClick={() => handleProjectClick(project, "github")}
-                      className="flex items-center gap-1 text-sm hover:text-accent transition-colors"
+                      onClick={showCaseStudyToast}
+                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors"
                     >
-                      <Github className="h-4 w-4" />
-                      <span>Code</span>
-                    </button>
-                    <button
-                      onClick={() => handleProjectClick(project, "demo")}
-                      className="flex items-center gap-1 text-sm hover:text-accent transition-colors"
-                    >
-                      <FileCode className="h-4 w-4" />
-                      <span>Case Study</span>
+                      Case Study
                       <ArrowUpRight className="h-3 w-3" />
                     </button>
+                    <button
+                      onClick={showGithubToast}
+                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors"
+                    >
+                      <Github className="h-3.5 w-3.5" />
+                      View on GitHub
+                    </button>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          {/* Navigation Buttons - Desktop */}
-          {currentPage > 1 && (
-            <button 
-              onClick={handlePreviousPage}
-              className="hidden lg:flex absolute -left-16 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
-              aria-label="Previous projects"
-              style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
-            >
-              <ArrowRight className="h-5 w-5 rotate-180" />
-            </button>
-          )}
-          {currentPage < totalPages && (
-            <button 
-              onClick={handleNextPage}
-              className="hidden lg:flex absolute -right-16 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
-              aria-label="Next projects"
-              style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
-            >
-              <ArrowRight className="h-5 w-5" />
-            </button>
-          )}
-          {/* Navigation Buttons - Mobile (below grid) */}
-          <div className="flex lg:hidden justify-center gap-4 mt-8">
-            {currentPage > 1 && (
-              <button
-                onClick={handlePreviousPage}
-                className="bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
-                aria-label="Previous projects"
-                style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
-              >
-                <ArrowRight className="h-5 w-5 rotate-180" />
-              </button>
-            )}
-            {currentPage < totalPages && (
-              <button
-                onClick={handleNextPage}
-                className="bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
-                aria-label="Next projects"
-                style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
-              >
-                <ArrowRight className="h-5 w-5" />
-              </button>
-            )}
-          </div>
-        </div>
+              </motion.div>
+            </StaggerItem>
+          ))}
+        </Stagger>
 
-        <div className="text-center mt-12">
-          <a 
-            href="https://github.com/username" 
-            className="btn-outline inline-flex items-center gap-2"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Block 3 — Exploration Platform */}
+        <FadeIn delay={0.3}>
+          <motion.div
+            className="p-5 md:p-6 rounded-lg border border-border/30 bg-card/60 hover:border-accent/20 transition-colors mb-10"
+            whileHover={{ y: -1 }}
+            transition={{ duration: 0.2 }}
           >
-            <Github className="h-5 w-5" />
-            <span>See More on GitHub</span>
-          </a>
-        </div>
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div className="max-w-2xl">
+                <h3 className="font-display font-semibold text-base text-foreground mb-2">
+                  {exploration.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  {exploration.desc}
+                </p>
+                <p className="text-xs text-muted-foreground/70 italic">
+                  {exploration.line}
+                </p>
+              </div>
+              <button
+                onClick={showExperimentsToast}
+                className="btn-outline inline-flex items-center gap-2 text-xs shrink-0 self-start"
+              >
+                <Github className="h-3.5 w-3.5" />
+                Explore on GitHub
+              </button>
+            </div>
+          </motion.div>
+        </FadeIn>
+
+        {/* More on GitHub */}
+        <FadeIn delay={0.4}>
+          <div className="text-center">
+            <a
+              href="https://github.com/paritosh0707"
+              className="btn-outline inline-flex items-center gap-2 text-sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="h-4 w-4" />
+              More on GitHub
+            </a>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

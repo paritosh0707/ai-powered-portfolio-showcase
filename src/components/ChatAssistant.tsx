@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark, oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/providers/ThemeProvider";
 
 type Message = {
   id: string;
@@ -43,9 +43,8 @@ export default function ChatAssistant() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const { theme, systemTheme } = useTheme?.() || { theme: "light", systemTheme: "light" };
-  const currentTheme = theme === "system" ? systemTheme : theme;
-  const isDarkTheme = currentTheme === "dark";
+  const { theme } = useTheme();
+  const isDarkTheme = theme === "dark";
 
   const toggleChat = () => {
     if (isMinimized) {
@@ -251,7 +250,7 @@ export default function ChatAssistant() {
                   <div className="flex gap-2 max-w-[80%]">
                     {message.role === "assistant" && (
                       <Avatar className="h-8 w-8 mt-1">
-                      <AvatarImage src="/imgg.jpg" alt="AI" />
+                      <AvatarImage src="/profile.jpg" alt="AI" />
                         <AvatarFallback className="bg-accent text-accent-foreground">
                           <Bot className="h-4 w-4" />
                         </AvatarFallback>

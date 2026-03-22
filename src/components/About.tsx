@@ -1,67 +1,115 @@
+import { TrendingUp, Building2, Layers } from "lucide-react";
+import { FadeIn, Stagger, StaggerItem, motion } from "@/components/ui/motion";
 
-import React from "react";
-import { User, Briefcase, Book, Award } from "lucide-react";
+const proofCards = [
+  {
+    icon: TrendingUp,
+    title: "80%+ Productivity Lift",
+    desc: "Delivered measurable efficiency gains through enterprise AI-driven QA automation.",
+  },
+  {
+    icon: Building2,
+    title: "3 Enterprise Deployments",
+    desc: "Contributed to scaling AI systems across real client environments and production workflows.",
+  },
+  {
+    icon: Layers,
+    title: "Multi-Module AI Platform",
+    desc: "Built and scaled AI capabilities across UI testing, API testing, data validation, user story intelligence, and agentic automation.",
+  },
+];
+
+const focusTags = [
+  "Multi-Agent Systems",
+  "LLMOps & Evaluation",
+  "Enterprise AI Platforms",
+  "RAG & Workflow Automation",
+];
 
 export default function About() {
   return (
-    <section id="about" className="py-20">
-      <div className="container max-w-4xl">
-        <h2 className="section-title">
-          <User className="h-8 w-8 text-accent" />
-          <span>About Me</span>
-        </h2>
+    <section id="about">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-5 gap-16 lg:gap-20 items-start">
+          {/* Left Column — Narrative */}
+          <div className="lg:col-span-3">
+            <FadeIn>
+              <span className="text-xs font-semibold text-accent uppercase tracking-[0.2em] mb-5 block">
+                About / Identity
+              </span>
+              <h2
+                className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-foreground mb-8 leading-tight"
+                style={{ letterSpacing: "-0.035em" }}
+              >
+                Building Production-Grade
+                <br />
+                AI Systems
+              </h2>
+            </FadeIn>
 
-        <div className="glass-card p-6 md:p-8 animate-scale-in">
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold mb-4">Professional Bio</h3>
-            <p className="text-foreground/80 mb-4">
-            With over 3 years of experience in data science and a strong focus on Generative AI, I specialize in building scalable, production-ready solutions that drive real-world impact.
-            My expertise spans LangChain, LLMOps, MLOps, and deep learning, with hands-on experience in building multi-agent systems, RAG pipelines, and automated data workflows.
-            </p>
-            <p className="text-foreground/80">
-            Currently, I work as a Senior Data Scientist at Incedo Solutions Ltd, where I lead the development of innovative AI-driven tools—ranging from QA automation systems that generate 
-            Gherkin-based test cases to enterprise-ready APIs that streamline business operations. My projects have led to measurable improvements, including a 36% boost in QA productivity and a 44% gain in data validation efficiency.
-            </p>
+            <FadeIn delay={0.1}>
+              <p className="text-base md:text-lg text-foreground/90 leading-relaxed mb-5">
+                I am a Senior AI Engineer focused on designing and scaling
+                intelligent systems that move beyond prototypes into real
+                business environments. My work spans multi-agent orchestration,
+                LLM-powered platforms, retrieval systems, and enterprise AI
+                automation.
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <p className="text-[15px] text-muted-foreground leading-relaxed mb-10">
+                I work at the intersection of system architecture, reliability,
+                evaluation, and applied intelligence — building solutions that
+                are not only technically strong, but usable, measurable, and
+                production-ready across complex workflows.
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.3}>
+              <div className="flex flex-wrap gap-2">
+                {focusTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center px-3.5 py-1.5 rounded border border-border/50 text-xs font-medium text-muted-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </FadeIn>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="text-xl font-bold mb-3 flex items-center">
-                <Briefcase className="h-5 w-5 mr-2 text-accent" />
-                Experience Highlights
-              </h3>
-              <ul className="space-y-2 text-foreground/80">
-                <li>• Led a team of 5 AI engineers at Incedo</li>
-                <li>• Built an AI-powered QA automation system boosting productivity by 63%</li>
-                <li>• Developed a GenAI data validation platform with a 77% productivity gain</li>
-                {/* <li>• Mentored 20+ junior data scientists</li> */}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold mb-3 flex items-center">
-                <Book className="h-5 w-5 mr-2 text-accent" />
-                Education
-              </h3>
-              <ul className="space-y-2 text-foreground/80">
-                <li>• B.E. Computer Science – Thapar University</li>
-                <li>• NLP & Deep Learning Specialization – Coursera</li>
-                <li>• Generative AI Bootcamp – LLMOps Focus</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-8">
-            <h3 className="text-xl font-bold mb-3 flex items-center">
-              <Award className="h-5 w-5 mr-2 text-accent" />
-              Fun Facts
-            </h3>
-            <ul className="grid md:grid-cols-2 gap-2 text-foreground/80">
-              <li>• If I weren’t an AI engineer, I’d probably be a full-time AI teacher.</li>
-              <li>• I love teaching complex AI concepts in a way that even non-tech folks can understand.</li>
-              <li>• I enjoy turning cutting-edge research into hands-on lessons—one slide deck at a time.</li>
-              <li>• I’ve mentored 20+ junior data scientists and love breaking down tough AI topics into ‘aha’ moments.</li>
-            </ul>
+          {/* Right Column — Proof Cards */}
+          <div className="lg:col-span-2">
+            <Stagger className="flex flex-col gap-4" staggerDelay={0.15}>
+              {proofCards.map((card) => {
+                const Icon = card.icon;
+                return (
+                  <StaggerItem key={card.title}>
+                    <motion.div
+                      className="p-5 rounded-lg border border-border/40 bg-card hover:border-accent/30 transition-colors"
+                      whileHover={{ y: -2 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="p-2 rounded bg-accent/10 text-accent shrink-0 mt-0.5">
+                          <Icon className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <h3 className="font-display font-semibold text-sm text-foreground mb-1.5">
+                            {card.title}
+                          </h3>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            {card.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </StaggerItem>
+                );
+              })}
+            </Stagger>
           </div>
         </div>
       </div>
