@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import {
   Send,
   Linkedin,
@@ -10,11 +13,23 @@ import {
   Briefcase,
   LayoutGrid,
   Mic,
+  Loader2,
+  CheckCircle2,
 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { FadeIn, Stagger, StaggerItem, motion } from "@/components/ui/motion";
 
 const CONTACT_EMAIL = "paritoshsharma072000@gmail.com";
+const WEB3FORMS_URL = "https://api.web3forms.com/submit";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  lookingFor: z.string().optional(),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 const engagementCards = [
   {
@@ -61,47 +76,72 @@ const lookingForOptions = [
 
 export default function Contact() {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    lookingFor: "",
-    message: "",
+  const [submitState, setSubmitState] = useState<
+    "idle" | "submitting" | "success"
+  >("idle");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      lookingFor: "",
+      message: "",
+    },
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  };
+  const onSubmit = async (data: ContactFormData) => {
+    setSubmitState("submitting");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+    try {
+      const response = await fetch(WEB3FORMS_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
+          subject: data.lookingFor
+            ? `Portfolio Inquiry: ${data.lookingFor}`
+            : "Portfolio Contact Form",
+          from_name: data.name,
+          email: data.email,
+          looking_for: data.lookingFor || "Not specified",
+          message: data.message,
+          botcheck: "",
+        }),
+      });
 
-    const subject = encodeURIComponent(
-      formData.lookingFor
-        ? `Portfolio Inquiry: ${formData.lookingFor}`
-        : "Portfolio Contact Form"
-    );
-    const body = encodeURIComponent(
-      `Hi Paritosh,\n\nName: ${formData.name}\nEmail: ${formData.email}\nLooking for: ${formData.lookingFor || "Not specified"}\n\n${formData.message}`
-    );
+      const result = await response.json();
 
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-
-    await new Promise((r) => setTimeout(r, 500));
-
-    toast({
-      title: "Opening email client",
-      description:
-        "Your default email app should open with the message pre-filled.",
-    });
-
-    setFormData({ name: "", email: "", lookingFor: "", message: "" });
-    setIsSubmitting(false);
+      if (result.success) {
+        setSubmitState("success");
+        toast({
+          title: "Message sent!",
+          description: "Thanks for reaching out. I'll get back to you soon.",
+        });
+        reset();
+        setTimeout(() => setSubmitState("idle"), 2500);
+      } else {
+        setSubmitState("idle");
+        toast({
+          title: "Failed to send",
+          description:
+            "Something went wrong. Please try again or email me directly.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      setSubmitState("idle");
+      toast({
+        title: "Network error",
+        description: "Please check your internet connection and try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -159,7 +199,16 @@ export default function Contact() {
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Form */}
           <FadeIn delay={0.15} className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+              <input
+                type="checkbox"
+                name="botcheck"
+                className="hidden"
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label
@@ -171,12 +220,15 @@ export default function Contact() {
                   <input
                     type="text"
                     id="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="input-field"
+                    {...register("name")}
+                    className={`input-field ${errors.name ? "border-destructive focus:ring-destructive/30" : ""}`}
                     placeholder="Your name"
-                    required
                   />
+                  {errors.name && (
+                    <p className="text-xs text-destructive mt-1.5">
+                      {errors.name.message}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label
@@ -188,12 +240,15 @@ export default function Contact() {
                   <input
                     type="email"
                     id="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="input-field"
+                    {...register("email")}
+                    className={`input-field ${errors.email ? "border-destructive focus:ring-destructive/30" : ""}`}
                     placeholder="you@example.com"
-                    required
                   />
+                  {errors.email && (
+                    <p className="text-xs text-destructive mt-1.5">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -206,8 +261,7 @@ export default function Contact() {
                 </label>
                 <select
                   id="lookingFor"
-                  value={formData.lookingFor}
-                  onChange={handleChange}
+                  {...register("lookingFor")}
                   className="input-field"
                 >
                   <option value="">Select an option</option>
@@ -229,24 +283,37 @@ export default function Contact() {
                 <textarea
                   id="message"
                   rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="input-field resize-none"
+                  {...register("message")}
+                  className={`input-field resize-none ${errors.message ? "border-destructive focus:ring-destructive/30" : ""}`}
                   placeholder="Tell me about your project..."
-                  required
                 />
+                {errors.message && (
+                  <p className="text-xs text-destructive mt-1.5">
+                    {errors.message.message}
+                  </p>
+                )}
               </div>
 
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={submitState !== "idle"}
                 className="btn-primary w-full sm:w-auto flex items-center justify-center gap-2 disabled:opacity-50"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={submitState === "idle" ? { scale: 1.02 } : {}}
+                whileTap={submitState === "idle" ? { scale: 0.98 } : {}}
               >
-                {isSubmitting ? (
-                  "Opening..."
-                ) : (
+                {submitState === "submitting" && (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                )}
+                {submitState === "success" && (
+                  <>
+                    <CheckCircle2 className="h-4 w-4" />
+                    Sent!
+                  </>
+                )}
+                {submitState === "idle" && (
                   <>
                     <Send className="h-4 w-4" />
                     Send Message
