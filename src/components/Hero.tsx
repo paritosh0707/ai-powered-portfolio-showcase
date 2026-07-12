@@ -2,10 +2,10 @@ import { ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
 
 const capabilities = [
-  "Multi-Agent Systems in Production",
-  "Enterprise AI Platforms (IntelliQA)",
-  "LLMOps & Evaluation Pipelines",
-  "RAG & Workflow Automation",
+  "AI Product & Platform Strategy",
+  "Multi-Agent Systems Architecture",
+  "Engineering & Team Leadership",
+  "Enterprise Solutioning & Client Demos",
 ];
 
 export default function Hero() {
@@ -27,7 +27,7 @@ export default function Hero() {
             >
               <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] uppercase text-muted-foreground">
                 <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                Available for Strategic Roles
+                Open to Lead AI Engineering &amp; Architecture Roles
               </span>
             </motion.div>
 
@@ -39,11 +39,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.08 }}
             >
-              Designing
+              Building and Leading
               <br />
-              Production-Grade
-              <br className="hidden sm:block" />
-              <span className="text-accent"> AI Systems</span>
+              <span className="text-accent">Enterprise AI Products</span>
             </motion.h1>
 
             {/* Name Line */}
@@ -65,9 +63,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.26 }}
             >
-              I build intelligent systems that move beyond prototypes — from
-              multi-agent orchestration to enterprise AI platforms, focused on
-              reliability, evaluation, and real-world impact.
+              I work across product strategy, AI architecture, and engineering
+              execution—turning complex enterprise workflows into
+              production-grade AI platforms.
             </motion.p>
 
             {/* Differentiator Line */}
@@ -77,8 +75,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.34 }}
             >
-              Focused on solving orchestration, reliability, and scaling
-              challenges in real-world AI systems.
+              From defining what should be built to architecting how it works,
+              leading cross-functional teams, and presenting solutions to
+              clients.
             </motion.p>
 
             {/* Capability Highlights */}
@@ -106,9 +105,12 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              Currently building:{" "}
-              <span className="text-accent/80 font-medium">Dockrion</span> — a
-              framework for AI agent deployment and orchestration
+              Currently leading:{" "}
+              <span className="text-accent/80 font-medium">
+                An AI-native Product Development Lifecycle platform
+              </span>{" "}
+              spanning product intent, design, engineering, quality, and release
+              readiness.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -118,11 +120,11 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.56 }}
             >
-              <a href="#projects" className="btn-primary">
-                View Systems
+              <a href="#experience" className="btn-primary">
+                Explore My Work
               </a>
-              <a href="#contact" className="btn-outline">
-                Get in Touch
+              <a href="#projects" className="btn-outline">
+                View Case Studies
               </a>
             </motion.div>
           </div>

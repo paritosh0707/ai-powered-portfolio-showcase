@@ -34,18 +34,18 @@ type ContactFormData = z.infer<typeof contactSchema>;
 const engagementCards = [
   {
     icon: Briefcase,
-    title: "Work With Me",
-    desc: "For companies building AI products or platforms.",
+    title: "Strategic AI Roles",
+    desc: "For organizations building enterprise AI products, internal platforms, or agentic systems.",
   },
   {
     icon: LayoutGrid,
-    title: "Consulting & Architecture",
-    desc: "For designing LLM systems, RAG pipelines, and agent workflows.",
+    title: "Architecture & Solutioning",
+    desc: "For designing multi-agent platforms, RAG systems, LLMOps capabilities, and production AI architecture.",
   },
   {
     icon: Mic,
-    title: "Speaking / Knowledge Sharing",
-    desc: "For sessions on AI systems, LLMOps, and multi-agent architectures.",
+    title: "Speaking & Knowledge Sharing",
+    desc: "For sessions on AI product engineering, multi-agent architecture, LLMOps, and enterprise AI adoption.",
   },
 ];
 
@@ -68,9 +68,9 @@ const socialLinks = [
 ];
 
 const lookingForOptions = [
-  "Work Together",
-  "Consulting",
-  "Speaking",
+  "Career Opportunity",
+  "Architecture / Consulting",
+  "Speaking / Knowledge Sharing",
   "Other",
 ];
 
@@ -156,13 +156,14 @@ export default function Contact() {
             className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-foreground mb-4 leading-tight"
             style={{ letterSpacing: "-0.035em" }}
           >
-            Let's Build AI Systems
+            Let's Build Enterprise AI Products
             <br className="hidden sm:block" />
-            <span className="text-accent"> That Matter</span>
+            <span className="text-accent"> That Scale</span>
           </h2>
           <p className="text-[15px] text-muted-foreground max-w-2xl mb-12 leading-relaxed">
-            I work on production-grade AI systems, multi-agent platforms, and
-            enterprise automation solutions.
+            I am open to Lead AI Engineer, Staff AI Engineer, AI Platform, and AI
+            Architecture opportunities where product thinking and deep technical
+            execution come together.
           </p>
         </FadeIn>
 

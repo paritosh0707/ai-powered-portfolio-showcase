@@ -1,29 +1,34 @@
-import { TrendingUp, Building2, Layers } from "lucide-react";
+import { Users, Layers, Building2, TrendingUp } from "lucide-react";
 import { FadeIn, Stagger, StaggerItem, motion } from "@/components/ui/motion";
 
 const proofCards = [
   {
-    icon: TrendingUp,
-    title: "80%+ Productivity Lift",
-    desc: "Delivered measurable efficiency gains through enterprise AI-driven QA automation.",
-  },
-  {
-    icon: Building2,
-    title: "3 Enterprise Deployments",
-    desc: "Contributed to scaling AI systems across real client environments and production workflows.",
+    icon: Users,
+    title: "10-Member Cross-Functional Team",
+    desc: "Leading AI, backend, frontend, QA, and platform contributors across product development and enterprise delivery.",
   },
   {
     icon: Layers,
-    title: "Multi-Module AI Platform",
-    desc: "Built and scaled AI capabilities across UI testing, API testing, data validation, user story intelligence, and agentic automation.",
+    title: "AI-Native PDLC Platform",
+    desc: "Driving a connected platform spanning requirement intelligence, prototyping, engineering, testing, and release readiness.",
+  },
+  {
+    icon: Building2,
+    title: "Enterprise Client Adoption",
+    desc: "Contributing to discovery, solution design, product pitches, technical demonstrations, and production deployment.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Up to 80% Productivity Improvement",
+    desc: "Delivered significant efficiency gains in targeted AI-assisted QA and automation workflows.",
   },
 ];
 
 const focusTags = [
-  "Multi-Agent Systems",
-  "LLMOps & Evaluation",
-  "Enterprise AI Platforms",
-  "RAG & Workflow Automation",
+  "AI Product Strategy",
+  "AI Systems Architecture",
+  "Engineering Leadership",
+  "Client Solutioning",
 ];
 
 export default function About() {
@@ -35,34 +40,45 @@ export default function About() {
           <div className="lg:col-span-3">
             <FadeIn>
               <span className="text-xs font-semibold text-accent uppercase tracking-[0.2em] mb-5 block">
-                About / Identity
+                About / Leadership Profile
               </span>
               <h2
                 className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-foreground mb-8 leading-tight"
                 style={{ letterSpacing: "-0.035em" }}
               >
-                Building Production-Grade
+                Where Product Thinking
                 <br />
-                AI Systems
+                Meets AI Engineering
               </h2>
             </FadeIn>
 
             <FadeIn delay={0.1}>
               <p className="text-base md:text-lg text-foreground/90 leading-relaxed mb-5">
-                I am a Senior AI Engineer focused on designing and scaling
-                intelligent systems that move beyond prototypes into real
-                business environments. My work spans multi-agent orchestration,
-                LLM-powered platforms, retrieval systems, and enterprise AI
-                automation.
+                I am a Lead AI Engineer working at the intersection of product
+                strategy, AI architecture, and engineering leadership. I help
+                determine what should be built, design how it should work, and
+                lead teams in taking it from product concept to enterprise
+                deployment.
               </p>
             </FadeIn>
 
             <FadeIn delay={0.2}>
+              <p className="text-[15px] text-foreground/80 leading-relaxed mb-5">
+                My work spans multi-agent systems, LLM-powered platforms,
+                retrieval and context engineering, AI evaluation, agentic
+                automation, and cloud-native deployment. Beyond implementation, I
+                contribute to product roadmaps, architecture decisions,
+                technology selection, client discovery, solution pitches, and
+                product demonstrations.
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.25}>
               <p className="text-[15px] text-muted-foreground leading-relaxed mb-10">
-                I work at the intersection of system architecture, reliability,
-                evaluation, and applied intelligence — building solutions that
-                are not only technically strong, but usable, measurable, and
-                production-ready across complex workflows.
+                I currently lead a cross-functional team of approximately 10
+                members and am driving the evolution of an enterprise QA
+                automation product into a broader AI-native Product Development
+                Lifecycle platform.
               </p>
             </FadeIn>
 

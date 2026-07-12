@@ -2,46 +2,46 @@ import { FadeIn, Stagger, StaggerItem, motion } from "@/components/ui/motion";
 
 const competencies = [
   {
-    title: "Multi-Agent Architecture",
-    body: "Designing agentic systems with orchestration, tool integration, memory, reasoning flows, and feedback-driven execution for complex automation.",
-    tags: ["LangGraph", "Agent Workflows", "Tool Use", "Orchestration"],
+    title: "Product & Platform Strategy",
+    body: "Translating business problems, client feedback, and product opportunities into platform capabilities, technical roadmaps, and phased delivery plans.",
+    tags: ["Product Discovery", "Capability Roadmaps", "Use-Case Prioritization", "Platform Thinking"],
   },
   {
-    title: "LLMOps & AI Reliability",
-    body: "Building evaluation-aware AI pipelines with prompt lifecycle control, observability, deployment discipline, and production quality safeguards.",
-    tags: ["Evaluation", "PromptOps", "Observability", "Deployment"],
+    title: "AI Architecture",
+    body: "Designing multi-agent, retrieval, evaluation, integration, and execution architectures for reliable enterprise AI systems.",
+    tags: ["Multi-Agent Systems", "RAG", "LLMOps", "Distributed Workflows"],
   },
   {
-    title: "Retrieval & Knowledge Systems",
-    body: "Developing grounded AI systems using embeddings, vector search, ranking, and context engineering to improve trust, relevance, and response quality.",
-    tags: ["RAG", "Embeddings", "Vector DB", "Retrieval"],
+    title: "Engineering Leadership",
+    body: "Leading cross-functional teams, defining technical direction, reviewing system designs, and establishing production engineering practices.",
+    tags: ["Team Leadership", "Technical Direction", "Engineering Quality", "Delivery Governance"],
   },
   {
-    title: "Enterprise AI Platform Engineering",
-    body: "Creating internal and client-facing AI products that integrate with business workflows across automation, testing, and decision-support systems.",
-    tags: ["AI Platforms", "Workflow Automation", "Productization", "Enterprise Systems"],
+    title: "Client Solutioning",
+    body: "Participating in client discovery, translating business needs into AI solutions, and building and presenting product demonstrations.",
+    tags: ["Client Discovery", "Solution Design", "Technical Pitches", "Product Demos"],
   },
 ];
 
 export default function Competencies() {
   return (
-    <section className="bg-surface-container-low">
+    <section id="leadership" className="bg-surface-container-low">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <FadeIn>
           <span className="text-xs font-semibold text-accent uppercase tracking-[0.2em] mb-5 block">
-            Core Competencies
+            Core Leadership Areas
           </span>
           <h2
             className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-foreground mb-4 leading-tight"
             style={{ letterSpacing: "-0.035em" }}
           >
-            What I Build
+            How I Create and Scale AI Products
           </h2>
           <p className="text-[15px] text-muted-foreground max-w-2xl mb-14 leading-relaxed">
-            I specialize in building AI systems that combine orchestration,
-            reliability, retrieval, and product thinking — designed for
-            real-world deployment rather than isolated experimentation.
+            My role spans the complete journey from identifying the right product
+            problem to designing, building, scaling, and presenting the resulting
+            AI platform.
           </p>
         </FadeIn>
 
