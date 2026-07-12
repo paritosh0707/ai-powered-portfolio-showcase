@@ -44,10 +44,10 @@ export default function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg text-muted-foreground hover:text-accent transition-colors"
+                className="inline-flex items-center justify-center h-11 w-11 rounded-lg text-muted-foreground hover:text-accent hover:bg-muted transition-colors"
                 aria-label={link.name}
               >
-                <link.icon className="h-4 w-4" />
+                <link.icon className="h-5 w-5" />
               </a>
             ))}
           </div>

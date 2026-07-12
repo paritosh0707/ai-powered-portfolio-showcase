@@ -74,7 +74,7 @@ export default function BlogArticle() {
             
             <div className="flex flex-wrap gap-2 mt-4">
               {article.tags.map((tag, index) => (
-                <span key={index} className="badge badge-accent">
+                <span key={index} className="chip">
                   <Tag className="w-3 h-3 mr-1" />
                   {tag}
                 </span>

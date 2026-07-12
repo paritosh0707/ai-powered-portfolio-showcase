@@ -10,6 +10,7 @@ import BlogArticle from "./pages/BlogArticle";
 import BlogList from "./pages/BlogList";
 import MindstackList from './mindstack/MindstackList'
 import ArticlePage from './mindstack/ArticlePage'
+import CaseStudyDockrion from './pages/CaseStudyDockrion'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
@@ -35,6 +36,7 @@ const App = () => (
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Index />} />
+              <Route path="/case-study/dockrion" element={<CaseStudyDockrion />} />
               <Route path="/blog" element={<BlogList />} />
               <Route path="/blog/:slug" element={<BlogArticle />} />
               <Route path="/mindstack" element={<MindstackList />} />

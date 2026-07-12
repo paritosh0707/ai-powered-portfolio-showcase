@@ -349,7 +349,7 @@ export default function Contact() {
 
             <FadeIn delay={0.25}>
               <div className="p-5 rounded-lg border border-border/40 bg-card">
-                <span className="text-[10px] font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-3 block">
+                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em] mb-3 block">
                   Connect
                 </span>
                 <div className="flex gap-2">
@@ -359,10 +359,10 @@ export default function Contact() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg border border-border/40 text-muted-foreground hover:text-accent hover:border-accent/40 transition-all"
+                      className="inline-flex items-center justify-center h-11 w-11 rounded-lg border border-border/40 text-muted-foreground hover:text-accent hover:border-accent/40 transition-all"
                       aria-label={link.name}
                     >
-                      <link.icon className="h-4 w-4" />
+                      <link.icon className="h-5 w-5" />
                     </a>
                   ))}
                 </div>
@@ -373,7 +373,7 @@ export default function Contact() {
 
         {/* Bottom Line */}
         <FadeIn delay={0.35}>
-          <p className="text-center text-sm text-muted-foreground/70 mt-16 italic">
+          <p className="text-center text-sm text-muted-foreground mt-16 italic">
             If you're building something meaningful in AI, let's connect.
           </p>
         </FadeIn>

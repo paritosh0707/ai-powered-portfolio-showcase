@@ -1,4 +1,5 @@
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight, Github, Globe } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 import { FadeIn, Stagger, StaggerItem, motion } from "@/components/ui/motion";
 
@@ -33,7 +34,16 @@ const featured = {
   ],
 };
 
-const coreSystems = [
+type CoreSystem = {
+  title: string;
+  desc: string;
+  highlights: string[];
+  caseStudyPath?: string;
+  website?: string;
+  websiteLabel?: string;
+};
+
+const coreSystems: CoreSystem[] = [
   {
     title: "Dockrion",
     desc: "A framework for building and deploying AI agents and workflows with structured configurations and containerized execution.",
@@ -42,6 +52,9 @@ const coreSystems = [
       "Workflow orchestration via config-driven design",
       "Multi-tenant and scalable architecture concepts",
     ],
+    caseStudyPath: "/case-study/dockrion",
+    website: "https://dockrion.com",
+    websiteLabel: "dockrion.com",
   },
   {
     title: "LLM Blocks",
@@ -144,17 +157,17 @@ export default function Projects() {
                 ))}
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <button
                   onClick={showCaseStudyToast}
-                  className="btn-primary inline-flex items-center gap-2 text-sm"
+                  className="btn-primary w-full sm:w-auto gap-2"
                 >
                   View Case Study
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </button>
                 <button
                   onClick={showGithubToast}
-                  className="btn-outline inline-flex items-center gap-2 text-sm"
+                  className="btn-outline w-full sm:w-auto gap-2"
                 >
                   <Github className="h-3.5 w-3.5" />
                   GitHub
@@ -193,21 +206,43 @@ export default function Projects() {
                       </li>
                     ))}
                   </ul>
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={showCaseStudyToast}
-                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors"
-                    >
-                      Case Study
-                      <ArrowUpRight className="h-3 w-3" />
-                    </button>
-                    <button
-                      onClick={showGithubToast}
-                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors"
-                    >
-                      <Github className="h-3.5 w-3.5" />
-                      View on GitHub
-                    </button>
+                  <div className="flex items-center gap-4 flex-wrap">
+                    {sys.caseStudyPath ? (
+                      <Link
+                        to={sys.caseStudyPath}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:opacity-80 transition-opacity"
+                      >
+                        Case Study
+                        <ArrowUpRight className="h-3 w-3" />
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={showCaseStudyToast}
+                        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors"
+                      >
+                        Case Study
+                        <ArrowUpRight className="h-3 w-3" />
+                      </button>
+                    )}
+                    {sys.website ? (
+                      <a
+                        href={sys.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors"
+                      >
+                        <Globe className="h-3.5 w-3.5" />
+                        {sys.websiteLabel ?? "Website"}
+                      </a>
+                    ) : (
+                      <button
+                        onClick={showGithubToast}
+                        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors"
+                      >
+                        <Github className="h-3.5 w-3.5" />
+                        View on GitHub
+                      </button>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -230,7 +265,7 @@ export default function Projects() {
                 <p className="text-sm text-muted-foreground leading-relaxed mb-2">
                   {exploration.desc}
                 </p>
-                <p className="text-xs text-muted-foreground/70 italic">
+                <p className="text-xs text-muted-foreground italic">
                   {exploration.line}
                 </p>
               </div>

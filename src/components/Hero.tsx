@@ -12,10 +12,10 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-[100dvh] relative flex items-center !pt-20 !pb-12 md:!py-0"
+      className="min-h-[100dvh] relative flex items-center !pt-24 !pb-12 lg:!pb-0 !max-w-none !px-0"
     >
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center">
           {/* Left Column — Content (takes 3 of 5 cols) */}
           <div className="lg:col-span-3 order-2 lg:order-1">
             {/* Availability Indicator */}
@@ -72,7 +72,7 @@ export default function Hero() {
 
             {/* Differentiator Line */}
             <motion.p
-              className="text-sm text-muted-foreground/70 italic max-w-lg mb-8"
+              className="text-sm text-muted-foreground italic max-w-lg mb-8"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.34 }}
@@ -101,7 +101,7 @@ export default function Hero() {
 
             {/* Currently Building */}
             <motion.p
-              className="text-xs text-muted-foreground/60 mb-8 font-mono"
+              className="text-xs text-muted-foreground mb-8 font-mono"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -127,8 +127,8 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Column — Photo (takes 2 of 5 cols, hidden on mobile) */}
-          <div className="hidden lg:block lg:col-span-2 order-1 lg:order-2">
+          {/* Right Column — Photo (takes 2 of 5 cols; on top on mobile) */}
+          <div className="block lg:col-span-2 order-1 lg:order-2">
             <motion.div
               className="flex justify-center lg:justify-end"
               initial={{ opacity: 0, scale: 0.92 }}
@@ -136,7 +136,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             >
               <div className="relative">
-                <div className="w-72 h-80 lg:w-[20rem] lg:h-[24rem] rounded-sm border-[3px] border-accent overflow-hidden shadow-[0_0_40px_8px_rgba(16,185,129,0.08)]">
+                <div className="w-48 h-56 sm:w-60 sm:h-72 lg:w-[20rem] lg:h-[24rem] rounded-sm border-[3px] border-accent overflow-hidden glow-accent">
                   <img
                     src="/profile.jpg"
                     alt="Paritosh Sharma"
@@ -150,10 +150,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator — desktop only (overlaps stacked content on mobile) */}
       <motion.a
         href="#about"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-foreground transition-colors"
+        className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-foreground transition-colors"
         aria-label="Scroll to about section"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 6, 0] }}

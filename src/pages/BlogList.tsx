@@ -10,8 +10,7 @@ export default function BlogList() {
       {/* Fixed top-right back button */}
       <button
         onClick={() => navigate(-1)}
-        className="btn-outline flex items-center gap-2 fixed top-8 right-8 z-30"
-        style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+        className="btn-outline flex items-center gap-2 fixed top-8 right-8 z-30 shadow-sm bg-background/80 backdrop-blur-sm"
       >
         <ArrowLeft className="h-4 w-4" />
         Back
@@ -40,7 +39,7 @@ export default function BlogList() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-1 mb-3">
                   {post.tags.map((tag, i) => (
-                    <span key={i} className="badge badge-accent text-xs">
+                    <span key={i} className="chip">
                       {tag}
                     </span>
                   ))}
@@ -75,7 +74,6 @@ export default function BlogList() {
           <button
             onClick={() => navigate(-1)}
             className="btn-outline flex items-center gap-2"
-            style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
           >
             <ArrowLeft className="h-4 w-4" />
             Back

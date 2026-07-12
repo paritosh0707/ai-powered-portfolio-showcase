@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { X, Menu, Download } from "lucide-react";
+import { X, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLocation, useNavigate } from "react-router-dom";
+import ResumeActions from "@/components/ResumeActions";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +50,7 @@ export default function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <a
             href="#home"
@@ -75,14 +76,7 @@ export default function Navbar() {
 
             <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border/50">
               <ThemeToggle />
-              <a
-                href="/Paritosh_Sharma_Senior_AI_Engineer.pdf"
-                download
-                className="btn-primary h-9 px-4 text-xs flex items-center gap-1.5"
-              >
-                <Download className="h-3.5 w-3.5" />
-                Resume
-              </a>
+              <ResumeActions variant="desktop" />
             </div>
           </div>
 
@@ -90,7 +84,7 @@ export default function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-foreground hover:bg-muted transition-colors"
+              className="inline-flex items-center justify-center h-11 w-11 rounded-lg text-foreground hover:bg-muted transition-colors"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -101,7 +95,7 @@ export default function Navbar() {
 
       <div
         className={cn(
-          "md:hidden fixed inset-y-0 right-0 w-full max-w-xs bg-background/95 backdrop-blur-xl border-l border-border/50 z-50 transition-transform duration-300 ease-out",
+          "md:hidden fixed inset-y-0 right-0 w-full max-w-xs bg-background border-l border-border shadow-2xl z-[70] transition-transform duration-300 ease-out",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -109,14 +103,14 @@ export default function Navbar() {
           <span className="font-display font-bold">Menu</span>
           <button
             onClick={closeMenu}
-            className="p-2 rounded-lg text-foreground hover:bg-muted transition-colors"
+            className="inline-flex items-center justify-center h-11 w-11 rounded-lg text-foreground hover:bg-muted transition-colors"
             aria-label="Close menu"
           >
             <X size={20} />
           </button>
         </div>
 
-        <nav className="flex flex-col p-4 gap-1">
+        <nav className="flex flex-col p-4 gap-1 h-[calc(100%-4rem)] overflow-y-auto">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -128,21 +122,14 @@ export default function Navbar() {
             </a>
           ))}
           <div className="mt-4 pt-4 border-t border-border/50">
-            <a
-              href="/Paritosh_Sharma_Senior_AI_Engineer.pdf"
-              download
-              className="btn-primary w-full flex items-center justify-center gap-2"
-            >
-              <Download className="h-4 w-4" />
-              Resume
-            </a>
+            <ResumeActions variant="mobile" onAction={closeMenu} />
           </div>
         </nav>
       </div>
 
       {isOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-background/50 backdrop-blur-sm z-40"
+          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
           onClick={closeMenu}
         />
       )}

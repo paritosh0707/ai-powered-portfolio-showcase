@@ -48,7 +48,7 @@ export default function Blog() {
                 <div className="p-6">
                   <div className="flex flex-wrap gap-1 mb-3">
                     {post.tags.map((tag, i) => (
-                      <span key={i} className="badge badge-accent text-xs">
+                      <span key={i} className="chip">
                         {tag}
                       </span>
                     ))}
@@ -87,9 +87,8 @@ export default function Blog() {
           {currentPage > 1 && (
             <button 
               onClick={handlePreviousPage}
-              className="hidden md:flex absolute -left-16 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
+              className="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-md border border-border hover:bg-accent/10 transition-colors z-20"
               aria-label="Previous articles"
-              style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
             >
               <ArrowRight className="h-5 w-5 rotate-180" />
             </button>
@@ -97,9 +96,8 @@ export default function Blog() {
           {currentPage < totalPages && (
             <button 
               onClick={handleNextPage}
-              className="hidden md:flex absolute -right-16 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
+              className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-md border border-border hover:bg-accent/10 transition-colors z-20"
               aria-label="Next articles"
-              style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
             >
               <ArrowRight className="h-5 w-5" />
             </button>
@@ -109,9 +107,8 @@ export default function Blog() {
             {currentPage > 1 && (
               <button
                 onClick={handlePreviousPage}
-                className="bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
+                className="bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-md border border-border hover:bg-accent/10 transition-colors z-20"
                 aria-label="Previous articles"
-                style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
               >
                 <ArrowRight className="h-5 w-5 rotate-180" />
               </button>
@@ -119,9 +116,8 @@ export default function Blog() {
             {currentPage < totalPages && (
               <button
                 onClick={handleNextPage}
-                className="bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-border hover:bg-accent/10 transition-colors z-20"
+                className="bg-background/80 backdrop-blur-sm p-3 rounded-full shadow-md border border-border hover:bg-accent/10 transition-colors z-20"
                 aria-label="Next articles"
-                style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
               >
                 <ArrowRight className="h-5 w-5" />
               </button>

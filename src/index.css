@@ -49,6 +49,14 @@
     --sidebar-accent-foreground: 24 10% 10%;
     --sidebar-border: 20 6% 90%;
     --sidebar-ring: 160 84% 39%;
+
+    /* Elevation — warm-tinted, soft. Consumed via Tailwind shadow-{xs..xl}. */
+    --shadow-color: 24 20% 30%;
+    --shadow-xs: 0 1px 2px 0 hsl(var(--shadow-color) / 0.06);
+    --shadow-sm: 0 1px 3px 0 hsl(var(--shadow-color) / 0.08), 0 1px 2px -1px hsl(var(--shadow-color) / 0.06);
+    --shadow-md: 0 4px 12px -2px hsl(var(--shadow-color) / 0.10), 0 2px 6px -2px hsl(var(--shadow-color) / 0.06);
+    --shadow-lg: 0 12px 28px -6px hsl(var(--shadow-color) / 0.14), 0 6px 12px -6px hsl(var(--shadow-color) / 0.08);
+    --shadow-xl: 0 24px 48px -12px hsl(var(--shadow-color) / 0.20);
   }
 
   .dark {
@@ -95,6 +103,14 @@
     --sidebar-accent-foreground: 60 9% 98%;
     --sidebar-border: 12 6% 15%;
     --sidebar-ring: 160 64% 52%;
+
+    /* Dark elevation reads through surfaces + borders; shadows near-invisible. */
+    --shadow-color: 0 0% 0%;
+    --shadow-xs: 0 1px 2px 0 hsl(var(--shadow-color) / 0.30);
+    --shadow-sm: 0 1px 3px 0 hsl(var(--shadow-color) / 0.40), 0 1px 2px -1px hsl(var(--shadow-color) / 0.30);
+    --shadow-md: 0 4px 12px -2px hsl(var(--shadow-color) / 0.45), 0 2px 6px -2px hsl(var(--shadow-color) / 0.35);
+    --shadow-lg: 0 12px 28px -6px hsl(var(--shadow-color) / 0.55), 0 6px 12px -6px hsl(var(--shadow-color) / 0.40);
+    --shadow-xl: 0 24px 48px -12px hsl(var(--shadow-color) / 0.65);
   }
 }
 
@@ -105,6 +121,16 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   body {
@@ -121,7 +147,7 @@
   }
 
   section {
-    @apply py-24 md:py-32 px-4 md:px-8 max-w-6xl mx-auto;
+    @apply py-20 md:py-28 lg:py-32 px-5 sm:px-6 lg:px-8 max-w-6xl mx-auto;
   }
 
   code, pre {
@@ -158,36 +184,51 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
-  .section-heading {
-    @apply text-3xl md:text-4xl font-extrabold font-display tracking-tight mb-2;
+  .section-heading,
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-extrabold font-display tracking-tight mb-2;
   }
 
   .section-subtitle {
-    @apply text-muted-foreground text-lg mb-12 max-w-xl;
+    @apply text-muted-foreground text-base md:text-lg mb-12 max-w-2xl leading-relaxed;
   }
 
   .gradient-text {
     @apply bg-gradient-to-r from-accent to-emerald-400 bg-clip-text text-transparent;
   }
 
+  /* Soft accent halo for feature imagery / focal elements. */
+  .glow-accent {
+    box-shadow: 0 0 40px 8px hsl(var(--accent) / 0.12);
+  }
+
   .btn-primary {
-    @apply bg-accent text-accent-foreground hover:brightness-110 inline-flex h-11 items-center justify-center rounded px-6 py-2 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    @apply bg-accent text-accent-foreground hover:brightness-110 inline-flex h-11 items-center justify-center whitespace-nowrap rounded px-6 py-2 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
   }
 
   .btn-outline {
-    @apply border border-foreground/20 bg-transparent text-foreground hover:bg-foreground hover:text-background inline-flex h-11 items-center justify-center rounded px-6 py-2 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    @apply border border-foreground/20 bg-transparent text-foreground hover:bg-foreground hover:text-background inline-flex h-11 items-center justify-center whitespace-nowrap rounded px-6 py-2 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
   }
 
   .btn-ghost {
-    @apply hover:bg-muted inline-flex h-10 items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+    @apply hover:bg-muted inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
   }
 
   .surface-card {
-    @apply bg-card border border-border/60 rounded-xl transition-all duration-300;
+    @apply bg-card border border-border/60 rounded-2xl shadow-sm transition-all duration-300;
   }
 
   .surface-card:hover {
-    @apply border-border shadow-lg;
+    @apply border-border shadow-md;
+  }
+
+  /* Frosted panel for overlays & floating UI (chat, article cards). */
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-md border border-border/60 rounded-2xl shadow-md transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply border-border/80 shadow-lg;
   }
 
   .chip {

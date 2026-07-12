@@ -1,5 +1,5 @@
-import { Download } from "lucide-react";
 import { FadeIn, Stagger, StaggerItem, motion } from "@/components/ui/motion";
+import ResumeActions from "@/components/ResumeActions";
 
 type SystemCard = {
   title: string;
@@ -186,15 +186,8 @@ export default function Experience() {
             </p>
           </FadeIn>
 
-          <FadeIn direction="right">
-            <a
-              href="/Paritosh_Sharma_Senior_AI_Engineer.pdf"
-              download
-              className="btn-outline flex items-center gap-2 self-start sm:self-auto text-sm shrink-0"
-            >
-              <Download className="h-4 w-4" />
-              Full Resume
-            </a>
+          <FadeIn direction="right" className="self-start sm:self-auto shrink-0">
+            <ResumeActions variant="desktop" />
           </FadeIn>
         </div>
 

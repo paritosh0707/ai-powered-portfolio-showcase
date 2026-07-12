@@ -221,7 +221,7 @@ export default function ChatAssistant() {
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8"
+              className="h-10 w-10"
               onClick={toggleChat}
               aria-label="Close chat"
             >
@@ -305,7 +305,7 @@ export default function ChatAssistant() {
                                   {...props} 
                                   target="_blank" 
                                   rel="noopener noreferrer" 
-                                  className="text-blue-500 dark:text-blue-400 hover:underline"
+                                  className="text-accent hover:underline"
                                 />
                               ),
                               p: ({node, ...props}) => (
@@ -416,7 +416,7 @@ export default function ChatAssistant() {
                     <button
                       key={question}
                       onClick={() => handleSampleQuestion(question)}
-                      className="text-xs bg-muted hover:bg-muted/80 px-3 py-1.5 rounded-full text-foreground/80 transition-colors"
+                      className="text-xs bg-muted hover:bg-muted/80 px-3 py-2.5 min-h-[40px] rounded-full text-foreground/80 transition-colors"
                     >
                       {question}
                     </button>
@@ -447,7 +447,7 @@ export default function ChatAssistant() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Ask me anything about Paritosh's work..."
-                    className="w-full resize-none rounded-lg border border-input px-3 py-2 text-sm min-h-[44px] max-h-[120px] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-black"
+                    className="w-full resize-none rounded-lg border border-input bg-background px-3 py-2 text-sm min-h-[44px] max-h-[120px] text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                     rows={1}
                   />
                 </div>
